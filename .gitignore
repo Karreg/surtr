@@ -1,0 +1,11 @@
+surtr/obj
+packages
+surtr.AndroidCtrlTestModule/bin
+surtr.AndroidCtrlTestModule/obj
+surtr.Shared/bin
+surtr.Shared/obj
+surtr.Spikes/bin
+**/obj
+**/bin
+**/*.suo
+**/*.Cache

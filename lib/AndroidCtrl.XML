@@ -173,13 +173,6 @@
             </summary>
             <returns>List DevicesItemData</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.ADB.DeviceConnectionMonitor(System.Boolean)">
-            <summary>
-             DeviceConnectionMonitor starts a thread which checks every 10 sec for connected devices
-            </summary>
-            <param name="mode">true to start, false to stop</param>
-            <returns>true if start or stop successfull else false</returns>
-        </member>
         <member name="M:AndroidCtrl.ADB.ADB.Disconnect(System.String,System.String)">
             <summary>
              Disconnect a single or all ip devices
@@ -436,9 +429,9 @@
              Get/Set the ADB directory
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.ADB.SetDeviceConnectionMonitorCallback">
+        <member name="P:AndroidCtrl.ADB.ADB.ConnectionMonitor">
             <summary>
-             Set the callback function to raise if an event occure.
+             Returns and if not exist, creates the ConnectionMonitor instance
             </summary>
         </member>
         <member name="P:AndroidCtrl.ADB.ADB.DeviceID">
@@ -460,6 +453,7 @@
         <member name="P:AndroidCtrl.ADB.ADB.UseBusyBox">
             <summary>
              UseBusyBox de-/activate BusyBox for the whole instance. Set false for unset.
+            <para>*NOTE* If no BusyBox is installed on the device, this parameter can't be set to true it will always return false!</para>
             </summary>
         </member>
         <member name="P:AndroidCtrl.ADB.ADB.Device">
@@ -480,6 +474,39 @@
         <member name="P:AndroidCtrl.ADB.ADB.StatusWindow">
             <summary>
              Returns a new StatusWindow instance
+            </summary>
+        </member>
+        <member name="T:AndroidCtrl.ADB.ConnectionMonitor">
+            <summary>
+             Manage the device connection monitor
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.ADB.ConnectionMonitor.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.ADB.ConnectionMonitor.IsStarted">
+            <summary>
+             Check if the monitor is running
+            </summary>
+            <returns>if monitor is running return is true else false</returns>
+        </member>
+        <member name="M:AndroidCtrl.ADB.ConnectionMonitor.Start">
+            <summary>
+             DeviceConnectionMonitor starts a thread which checks every 10 sec for connected devices
+            </summary>
+            <returns>true if start successfull else false</returns>
+        </member>
+        <member name="M:AndroidCtrl.ADB.ConnectionMonitor.Stop">
+            <summary>
+             Stops the ConnectionMonitor Thread.
+            </summary>
+            <returns>true if stop successfull else false</returns>
+        </member>
+        <member name="E:AndroidCtrl.ADB.ConnectionMonitor.Callback">
+            <summary>
+             add/remove the callback function to raise if an event occure.
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.Device.ActivityManager">
@@ -595,60 +622,67 @@
             <param name="item">File/Folder name (case insensitiv)</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.BlockDeviceFile(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.BlockDeviceFile(System.String,System.String,System.Boolean)">
             <summary>
              Search block device files
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.CharacterDeviceFile(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.CharacterDeviceFile(System.String,System.String,System.Boolean)">
             <summary>
              Search character device files
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.Directory(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.Directory(System.String,System.String,System.Boolean)">
             <summary>
              Search directorys
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.File(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.File(System.String,System.String,System.Boolean)">
             <summary>
              Search files
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.Link(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.Link(System.String,System.String,System.Boolean)">
             <summary>
              Search symlinks
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.NamedPipe(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.NamedPipe(System.String,System.String,System.Boolean)">
             <summary>
              Search named pipes
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
-        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.UnixDomainSocket(System.String,System.String)">
+        <member name="M:AndroidCtrl.ADB.Device.BusyBox.Find.UnixDomainSocket(System.String,System.String,System.Boolean)">
             <summary>
              Search unix domain sockets
             </summary>
             <param name="remoteFolder">Directory path to deep search</param>
             <param name="item">File/Folder name (case insensitiv)</param>
+            <param name="su">Use su to send the command</param>
             <returns>List string</returns>
         </member>
         <member name="T:AndroidCtrl.ADB.Device.Dumpsys">
@@ -1240,9 +1274,9 @@
              RunCMD in the shell instance
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.Device.SuShellRT.SetOutputCallback">
+        <member name="E:AndroidCtrl.ADB.Device.SuShellRT.Callback">
             <summary>
-             SetSetOutputCallback define the output function
+             Callback define the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.Device.BusyBox.Tar">
@@ -1341,32 +1375,33 @@
             </summary>
             <returns>List string</returns>
         </member>
-        <member name="T:AndroidCtrl.CallbackDeviceConnectionMonitor">
+        <member name="T:AndroidCtrl.CallbackConnectionMonitor">
             <summary>
              This callback will be raised if the connected devices have changed (adb/fastboot)
             </summary>
-            <param name="devices">Return on this point is an (List DataModelDevicesItem)</param>
+            <param name="sender">string adb or fastboot</param>
+            <param name="e">ConnectionMonitorArgs object</param>
         </member>
         <member name="T:AndroidCtrl.CallbackDirectoryParser">
             <summary>
              This callback will be raised if u have set an callback to the directory parser
             </summary>
-            <param name="itemData">Return is on the point an DataModelItem</param>
+            <param name="sender">null</param>
+            <param name="e">DirectoryParserArgs object</param>
         </member>
         <member name="T:AndroidCtrl.CallbackFileFolderTransfer">
             <summary>
              This callback will be raised if u have set an callback to pushpullutf8 push
             </summary>
-            <param name="localPath">Return is the full local path of the item</param>
-            <param name="remotePath">Return is the full remote path of the item</param>
-            <param name="pathID">Return is the filesystemid (file,folder,symlink,etc...)</param>
-            <param name="stateID">Return is the transferid (ok,error,created)</param>
+            <param name="sender">null</param>
+            <param name="e">FileFolderTransferArgs object</param>
         </member>
-        <member name="T:AndroidCtrl.CallbackProcessOutput">
+        <member name="T:AndroidCtrl.CallbackProcessResponse">
             <summary>
-             This callback will be raised if u have set an callback to some process classes (logcat,realtimeshell,etc...)
+             This callback will be raised if u have set an callback to any realtime process
             </summary>
-            <param name="output">Return is a simple string</param>
+            <param name="sender">null</param>
+            <param name="e">ProcessResponseArgs object</param>
         </member>
         <member name="T:AndroidCtrl.ADB.Device.Daemon">
             <summary>
@@ -1459,6 +1494,7 @@
         <member name="M:AndroidCtrl.ADB.Device.Directories.GetDirectories">
             <summary>
              Returns only the sym-/directories in this directory as a parsed DataModelFileSystemItem list
+            <para>*NOTE* This method uses the callback also!</para>
             </summary>
             <returns>List DataModelFileSystemItem</returns>
         </member>
@@ -1471,6 +1507,7 @@
         <member name="M:AndroidCtrl.ADB.Device.Directories.GetFiles">
             <summary>
              Returns only the sym-/files in this directory as a parsed DataModelFileSystemItem list
+            <para>*NOTE* This method uses the callback also!</para>
             </summary>
             <returns>List string</returns>
         </member>
@@ -1561,9 +1598,9 @@
              Returns the directorysize in byte
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.Device.Directories.SetParserCallBack">
+        <member name="E:AndroidCtrl.ADB.Device.Directories.CallBack">
             <summary>
-             SetCallback defines the output function
+             CallBack defines the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.Device.Files">
@@ -1820,9 +1857,9 @@
              Dispose this instance
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.Device.LogCatRT.SetOutputCallback">
+        <member name="E:AndroidCtrl.ADB.Device.LogCatRT.Callback">
             <summary>
-             SetSetOutputCallback define the output function
+             Callback define the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.PushPullUTF8">
@@ -1866,9 +1903,9 @@
             <param name="timeOut">time the process will wait for output</param>
             <returns>bool</returns>
         </member>
-        <member name="P:AndroidCtrl.ADB.PushPullUTF8.SetTransferCallBack">
+        <member name="E:AndroidCtrl.ADB.PushPullUTF8.CallBack">
             <summary>
-             SetTransferCallBack define the output function
+             CallBack define the output callback
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.ShellRT">
@@ -1888,9 +1925,9 @@
              RunCMD in the shell instance
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.ShellRT.SetOutputCallback">
+        <member name="E:AndroidCtrl.ADB.ShellRT.Callback">
             <summary>
-             SetSetOutputCallback define the output function
+             Callback define the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.ADB.StatusWindow">
@@ -1903,9 +1940,9 @@
              Dispose this instance
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ADB.StatusWindow.SetOutputCallback">
+        <member name="E:AndroidCtrl.ADB.StatusWindow.Callback">
             <summary>
-             SetSetOutputCallback define the output function
+             Callback define the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.DataModelDeviceInfo">
@@ -2208,10 +2245,11 @@
              DataModelDevicesItem holds the connected device information
             </summary>
         </member>
-        <member name="M:AndroidCtrl.DataModelDevicesItem.#ctor(System.String,AndroidCtrl.IDDeviceState,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:AndroidCtrl.DataModelDevicesItem.#ctor(System.String,System.String,AndroidCtrl.IDDeviceState,System.String,System.String,System.String,System.String,System.String)">
             <summary>
              Creates the DataModelDevicesItem object
             </summary>
+            <param name="mode">("adb" or "fastboot"</param>
             <param name="serial">(ADB/Fastboot) serialnumber</param>
             <param name="state">(ADB/Fastboot) state (abdroid,fastboot,etc...)</param>
             <param name="product">(ADB) product name</param>
@@ -2219,6 +2257,12 @@
             <param name="device">(ADB) deviceid</param>
             <param name="ip">IP</param>
             <param name="port">Port</param>
+        </member>
+        <member name="P:AndroidCtrl.DataModelDevicesItem.Mode">
+            <summary>
+             Holds the request mode "adb" or "fastboot"
+            <para>*NOTE* Can be null</para>
+            </summary>
         </member>
         <member name="P:AndroidCtrl.DataModelDevicesItem.Device">
             <summary>
@@ -3453,6 +3497,121 @@
              Holds the Device-load-average (only if busybox is installed)
             </summary>
         </member>
+        <member name="T:AndroidCtrl.ConnectionMonitorArgs">
+            <summary>
+             ConnectionMonitorArgs holds the connected devices list
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.ConnectionMonitorArgs.Devices">
+            <summary>
+             Returns the list of connected devices
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.ConnectionMonitorArgs.#ctor(System.Collections.Generic.List{AndroidCtrl.DataModelDevicesItem})">
+            <summary>
+             Creates the ConnectionMonitorArgs object
+            </summary>
+            <param name="devices">Current connected devices list</param>
+        </member>
+        <member name="T:AndroidCtrl.DirectoryParserArgs">
+            <summary>
+             DirectoryParserArgs holds the parsed element
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.DirectoryParserArgs.Element">
+            <summary>
+             Returns the parsed element object
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.DirectoryParserArgs.#ctor(AndroidCtrl.DataModelFileSystemItem)">
+            <summary>
+             Creates the DirectoryParserArgs object
+            </summary>
+            <param name="element">DataModelFileSystemItem object</param>
+        </member>
+        <member name="T:AndroidCtrl.FileFolderTransferArgs">
+            <summary>
+             FileFolderTransferArgs holds file/folder transfer info
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.FileFolderTransferArgs.From">
+            <summary>
+             Returns the "from" element
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.FileFolderTransferArgs.To">
+            <summary>
+             Returns the "to" element
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.FileFolderTransferArgs.FileSystemID">
+            <summary>
+             Returns the filesystem id
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.FileFolderTransferArgs.TransferID">
+            <summary>
+             Returns the transfer id
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.FileFolderTransferArgs.#ctor(System.String,System.String,AndroidCtrl.IDFileSystem,AndroidCtrl.IDTransfer)">
+            <summary>
+             Creates the FileFolderTransferArgs object
+            </summary>
+            <param name="from">Element path "from"</param>
+            <param name="to">Element path "to"</param>
+            <param name="filesystemid">IDFileSystem</param>
+            <param name="transferid">IDTransfer</param>
+        </member>
+        <member name="T:AndroidCtrl.ProcessResponseArgs">
+            <summary>
+             ProcessResponseArgs holds the process output
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.ProcessResponseArgs.Response">
+            <summary>
+             Returns the response string
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.ProcessResponseArgs.#ctor(System.String)">
+            <summary>
+             Creates the ProcessResponseArgs object
+            </summary>
+            <param name="response">string response</param>
+        </member>
+        <member name="T:AndroidCtrl.Fastboot.ConnectionMonitor">
+            <summary>
+             Manage the device connection monitor
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.Fastboot.ConnectionMonitor.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrl.Fastboot.ConnectionMonitor.IsStarted">
+            <summary>
+             Check if the monitor is running
+            </summary>
+            <returns>if monitor is running return is true else false</returns>
+        </member>
+        <member name="M:AndroidCtrl.Fastboot.ConnectionMonitor.Start">
+            <summary>
+             DeviceConnectionMonitor starts a thread which checks every 10 sec for connected devices
+            </summary>
+            <returns>true if start successfull else false</returns>
+        </member>
+        <member name="M:AndroidCtrl.Fastboot.ConnectionMonitor.Stop">
+            <summary>
+             Stops the ConnectionMonitor Thread.
+            </summary>
+            <returns>true if stop successfull else false</returns>
+        </member>
+        <member name="E:AndroidCtrl.Fastboot.ConnectionMonitor.Callback">
+            <summary>
+             add/remove the callback function to raise if an event occure.
+            </summary>
+        </member>
         <member name="T:AndroidCtrl.Fastboot.Wipe">
             <summary>
              This class give u access to some predefined wipe methods
@@ -3594,9 +3753,9 @@
              Start the process and its background thread if "exe" exists
             </summary>
         </member>
-        <member name="P:AndroidCtrl.ProcessModels.RealTimeBG.SetOutputCallback">
+        <member name="E:AndroidCtrl.ProcessModels.RealTimeBG.Callback">
             <summary>
-             SetSetOutputCallback define the output function
+             Callback define the output function
             </summary>
         </member>
         <member name="T:AndroidCtrl.Signer.Signer">
@@ -3773,13 +3932,6 @@
             </summary>
             <returns>List DevicesItemData</returns>
         </member>
-        <member name="M:AndroidCtrl.Fastboot.Fastboot.DeviceConnectionMonitor(System.Boolean)">
-            <summary>
-             DeviceConnectionMonitor starts a thread which checks every 10 sec for connected devices
-            </summary>
-            <param name="mode">true to start, false to stop</param>
-            <returns>true if start or stop successfull else false</returns>
-        </member>
         <member name="M:AndroidCtrl.Fastboot.Fastboot.Dispose(System.Boolean)">
             <summary>
              Dispose is not a real IDisposable but it do its work.
@@ -3885,9 +4037,9 @@
              Get/Set the Fastboot directory
             </summary>
         </member>
-        <member name="P:AndroidCtrl.Fastboot.Fastboot.SetDeviceConnectionMonitorCallback">
+        <member name="P:AndroidCtrl.Fastboot.Fastboot.ConnectionMonitor">
             <summary>
-             Set the callback function to raise if an event occure.
+             Returns and if not exist, creates the ConnectionMonitor instance
             </summary>
         </member>
         <member name="P:AndroidCtrl.Fastboot.Fastboot.DeviceID">
@@ -4037,6 +4189,13 @@
             <param name="size">long 12389127389127389</param>
             <returns>string  2,45 MB | 200,00 GB</returns>
         </member>
+        <member name="M:AndroidCtrl.Tools.General.ConvertFileSize(System.String)">
+            <summary>
+             Calculate size in Byte,KB,MB,GB,TB,PT,EB,ZB,YB
+            </summary>
+            <param name="size">string 12389127389127389</param>
+            <returns>string  2,45 MB | 200,00 GB</returns>
+        </member>
         <member name="M:AndroidCtrl.Tools.General.GetEnumString(System.Enum)">
             <summary>
              Returns the real string value of the given enum
@@ -4083,32 +4242,18 @@
             <param name="str"></param>
             <returns>string</returns>
         </member>
-        <member name="T:AndroidCtrl.Tools.Images">
+        <member name="T:AndroidCtrl.Tools.Icons">
             <summary>
              This is the basic class to get an icon from an filepath or an file extension
             </summary>
         </member>
-        <member name="M:AndroidCtrl.Tools.Images.Dispose">
+        <member name="M:AndroidCtrl.Tools.Icons.Dispose">
             <summary>
              Dispose is not a real IDisposable but it do its work.
              <para>It deletes the created "tmp" directory which contains the icon cache and set some class vars to null</para>
             </summary>
         </member>
-        <member name="M:AndroidCtrl.Tools.Images.IconToBitmapImage(System.Drawing.Icon)">
-            <summary>
-             Icon to BitmapImage Converter
-            </summary>
-            <param name="icon">Icon source</param>
-            <returns>BitmapImage</returns>
-        </member>
-        <member name="M:AndroidCtrl.Tools.Images.IconToBitmapSource(System.Drawing.Icon)">
-            <summary>
-             Icon to BitmapSource Converter
-            </summary>
-            <param name="icon">Icon source</param>
-            <returns>BitmapSource</returns>
-        </member>
-        <member name="M:AndroidCtrl.Tools.Images.IconOfExtension(System.String,System.Boolean)">
+        <member name="M:AndroidCtrl.Tools.Icons.IconOfExtension(System.String,System.Boolean)">
             <summary>
              Get the icon of an extension
             </summary>
@@ -4116,14 +4261,14 @@
             <param name="overlay">bool symlink overlay</param>
             <returns>Icon</returns>
         </member>
-        <member name="M:AndroidCtrl.Tools.Images.IconOfFolder(System.Boolean)">
+        <member name="M:AndroidCtrl.Tools.Icons.IconOfFolder(System.Boolean)">
             <summary>
-             Get the icon of an extension
+             Get the windows folder icon
             </summary>
             <returns>Icon</returns>
             <param name="overlay">bool symlink overlay</param>
         </member>
-        <member name="M:AndroidCtrl.Tools.Images.IconOfPath(System.String,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:AndroidCtrl.Tools.Icons.IconOfPath(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
              Get the normal,small assigned icon of the given path
             </summary>
@@ -4290,6 +4435,11 @@
         <member name="F:AndroidCtrl.IDDevicePartition.RECOVERY">
             <summary>
              Implies recovery
+            </summary>
+        </member>
+        <member name="F:AndroidCtrl.IDDevicePartition.SDCARD">
+            <summary>
+             Implies sdcard
             </summary>
         </member>
         <member name="F:AndroidCtrl.IDDevicePartition.SYSTEM">
