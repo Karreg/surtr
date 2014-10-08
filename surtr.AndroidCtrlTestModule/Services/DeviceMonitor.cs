@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using AndroidCtrl;
 using AndroidCtrl.ADB;
 
@@ -13,10 +14,17 @@ namespace surtr.AndroidCtrlTestModule.Services
         {
             this.devices = new Dictionary<string, Device>();
             ADB.ConnectionMonitor.Callback += this.OnDevice;
-            if (!ADB.ConnectionMonitor.IsStarted())
+            
+            var worker = new BackgroundWorker();
+            worker.DoWork += (sender, args) =>
             {
-                ADB.ConnectionMonitor.Start();
-            }
+                if (!ADB.ConnectionMonitor.IsStarted())
+                {
+                    ADB.ConnectionMonitor.Start();
+                }
+            };
+            
+            worker.RunWorkerAsync();
         }
 
         private event Action<Device> InternalDevice;

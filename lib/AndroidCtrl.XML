@@ -5751,6 +5751,11 @@
              Tar compress IDs
             </summary>
         </member>
+        <member name="F:AndroidCtrl.IDTar.NONE">
+            <summary>
+             Implies none
+            </summary>
+        </member>
         <member name="F:AndroidCtrl.IDTar.BZIP2">
             <summary>
              Implies bzip2
