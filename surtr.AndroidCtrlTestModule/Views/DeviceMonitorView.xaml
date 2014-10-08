@@ -8,6 +8,21 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Label>Device Monitor</Label>
-        <Label Content="{Binding MyProperty}"/>
+        <ListView ItemsSource="{Binding Devices}" Height="200">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Device: " />
+                        <TextBlock Text="{Binding Id}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="State: " />
+                        <TextBlock Text="{Binding State}" FontWeight="Bold" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding Serial}" TextDecorations="Underline" Foreground="Blue" />
+                        <TextBlock Text=")" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </UserControl>

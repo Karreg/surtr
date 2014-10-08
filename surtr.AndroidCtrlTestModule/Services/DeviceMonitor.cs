@@ -19,7 +19,7 @@ namespace surtr.AndroidCtrlTestModule.Services
             }
         }
 
-        private event Action<Device> internalDevice;
+        private event Action<Device> InternalDevice;
 
         public event Action<Device> Device
         {
@@ -29,29 +29,31 @@ namespace surtr.AndroidCtrlTestModule.Services
                 {
                     value(device);
                 }
-                this.internalDevice += value;
+                this.InternalDevice += value;
             }
 
-            remove { this.internalDevice -= value; }
+            remove { this.InternalDevice -= value; }
         }
 
         private void OnDevice(object sender, ConnectionMonitorArgs e)
         {
             foreach (var device in e.Devices)
             {
-                var ldevice = new Device();
-                ldevice.Id = device.Device;
-                ldevice.Ip = device.IP;
-                ldevice.Mode = device.Mode;
-                ldevice.Model = device.Model;
-                ldevice.Product = device.Product;
-                ldevice.Serial = device.Serial;
-                ldevice.State = device.State.ToString();
+                var ldevice = new Device
+                {
+                    Id = device.Device,
+                    Ip = device.IP,
+                    Mode = device.Mode,
+                    Model = device.Model,
+                    Product = device.Product,
+                    Serial = device.Serial,
+                    State = device.State.ToString()
+                };
                 devices[ldevice.Id] = ldevice;
 
-                if (this.internalDevice != null)
+                if (this.InternalDevice != null)
                 {
-                    this.internalDevice(ldevice);
+                    this.InternalDevice(ldevice);
                 }
 
             }

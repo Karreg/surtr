@@ -1,38 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using Microsoft.Practices.Prism.Mvvm;
 using surtr.AndroidCtrlTestModule.Services;
 
 namespace surtr.AndroidCtrlTestModule.ViewModels
 {
-    public class DeviceMonitorViewModel : BindableBase
+    public class DeviceMonitorViewModel : BindableBase, IDisposable
     {
-        private string myProperty = string.Empty;
-        private DeviceMonitor deviceMonitor;
-
+        private readonly DeviceMonitor deviceMonitor;
+        
         public DeviceMonitorViewModel(DeviceMonitor deviceMonitor)
         {
-            this.MyProperty = "Property Test";
+            this.Devices = new ObservableCollection<Device>();
             this.deviceMonitor = deviceMonitor;
             this.deviceMonitor.Device += this.OnDevice;
         }
 
-        public string MyProperty
-        {
-            get { return myProperty; }
-            set
-            {
-                this.myProperty = value;
-                this.OnPropertyChanged("MyProperty");
-            }
-        }
+        public ObservableCollection<Device> Devices { get; private set; }
 
-        private void OnDevice(Device obj)
+        public void Dispose()
         {
-            this.MyProperty = obj.Id;
+            this.deviceMonitor.Device -= this.OnDevice;
+        }
+        
+        private void OnDevice(Device device)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var existingDevice = this.Devices.FirstOrDefault(d => d.Id == device.Id);
+                if (existingDevice == default(Device))
+                {
+                    this.Devices.Add(device);
+                    this.OnPropertyChanged("Devices");
+                }
+                else
+                {
+                    existingDevice.Ip = device.Ip;
+                    existingDevice.Mode = device.Mode;
+                    existingDevice.Model = device.Model;
+                    existingDevice.Product = device.Product;
+                    existingDevice.Serial = device.Serial;
+                    existingDevice.State = device.State;
+                }
+            });
         }
     }
 }
