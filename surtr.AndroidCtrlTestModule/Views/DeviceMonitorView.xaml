@@ -8,18 +8,37 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Label>Device Monitor</Label>
-        <ListView ItemsSource="{Binding Devices}" Height="200">
+        <WrapPanel>
+            <TextBlock Text="Selected Device: " />
+            <TextBlock Text="{Binding SelectedDevice.Name}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="State: " />
+            <TextBlock Text="{Binding SelectedDevice.State}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="Mode: " />
+            <TextBlock Text="{Binding SelectedDevice.Mode}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="Model: " />
+            <TextBlock Text="{Binding SelectedDevice.Model}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="Product: " />
+            <TextBlock Text="{Binding SelectedDevice.Product}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="Serial: " />
+            <TextBlock Text="{Binding SelectedDevice.Serial}" FontWeight="Bold" />
+            <TextBlock Text=", " />
+            <TextBlock Text="Ip:  " />
+            <TextBlock Text="{Binding SelectedDevice.Ip}" FontWeight="Bold" />
+        </WrapPanel>
+        <ListView ItemsSource="{Binding Devices}" Height="Auto" SelectedItem="{Binding SelectedDevice}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
                         <TextBlock Text="Device: " />
-                        <TextBlock Text="{Binding Id}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
                         <TextBlock Text=", " />
-                        <TextBlock Text="State: " />
-                        <TextBlock Text="{Binding State}" FontWeight="Bold" />
-                        <TextBlock Text=" (" />
-                        <TextBlock Text="{Binding Serial}" TextDecorations="Underline" Foreground="Blue" />
-                        <TextBlock Text=")" />
+                        <TextBlock Text="Model: " />
+                        <TextBlock Text="{Binding Model}" FontWeight="Bold" />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

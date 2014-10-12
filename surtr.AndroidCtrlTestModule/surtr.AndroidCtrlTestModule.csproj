@@ -40,6 +40,12 @@
     <Reference Include="AndroidCtrl">
       <HintPath>..\lib\AndroidCtrl.dll</HintPath>
     </Reference>
+    <Reference Include="Michonne.Implementation">
+      <HintPath>..\lib\Michonne.Implementation.dll</HintPath>
+    </Reference>
+    <Reference Include="Michonne.Interfaces">
+      <HintPath>..\lib\Michonne.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
       <HintPath>..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
     </Reference>
@@ -81,7 +87,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Device.cs" />
     <Compile Include="Services\DeviceMonitor.cs" />
+    <Compile Include="Services\FileTreeService.cs" />
     <Compile Include="ViewModels\DeviceMonitorViewModel.cs" />
+    <Compile Include="Views\DeviceConfigurationView.xaml.cs">
+      <DependentUpon>DeviceConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DeviceConfigurationViewModel.cs" />
     <Compile Include="Views\DeviceMonitorView.xaml.cs">
       <DependentUpon>DeviceMonitorView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +109,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\DeviceConfigurationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DeviceMonitorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -4,7 +4,7 @@ namespace surtr.AndroidCtrlTestModule.Services
 {
     public class Device : BindableBase
     {
-        private string id;
+        private string device;
         private string ip;
         private string mode;
         private string model;
@@ -12,14 +12,14 @@ namespace surtr.AndroidCtrlTestModule.Services
         private string serial;
         private string state;
 
-        public string Id
+        public string Name
         {
-            get { return this.id; }
+            get { return this.device; }
             set
             {
-                if (this.id == value) return;
-                this.id = value;
-                this.OnPropertyChanged("Id");
+                if (this.device == value) return;
+                this.device = value;
+                this.OnPropertyChanged("Device");
             }
         }
 

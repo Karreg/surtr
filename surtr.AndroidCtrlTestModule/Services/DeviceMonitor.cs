@@ -3,28 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using AndroidCtrl;
 using AndroidCtrl.ADB;
+using AndroidCtrl.Logging;
+using AndroidCtrl.Tools;
+using Michonne.Interfaces;
 
 namespace surtr.AndroidCtrlTestModule.Services
 {
     public class DeviceMonitor : IDisposable
     {
         private readonly Dictionary<string, Device> devices;
+        private readonly IUnitOfExecution dispatcher;
 
-        public DeviceMonitor()
+        public DeviceMonitor(IUnitOfExecution dispatcher)
         {
             this.devices = new Dictionary<string, Device>();
-            ADB.ConnectionMonitor.Callback += this.OnDevice;
-            
-            var worker = new BackgroundWorker();
-            worker.DoWork += (sender, args) =>
-            {
-                if (!ADB.ConnectionMonitor.IsStarted())
-                {
-                    ADB.ConnectionMonitor.Start();
-                }
-            };
-            
-            worker.RunWorkerAsync();
+            this.dispatcher = dispatcher;
         }
 
         private event Action<Device> InternalDevice;
@@ -43,13 +36,31 @@ namespace surtr.AndroidCtrlTestModule.Services
             remove { this.InternalDevice -= value; }
         }
 
+        public void Start()
+        {
+            dispatcher.Dispatch(() =>
+            {
+                Logger.Active = true; //default is false
+                Logger.WriteParts = true; //default is false
+                Deploy.ADB();
+                ADB.Start();
+
+                ADB.ConnectionMonitor.Callback += this.OnDevice;
+
+                if (!ADB.ConnectionMonitor.IsStarted())
+                {
+                    ADB.ConnectionMonitor.Start();
+                }
+            });
+        }
+
         private void OnDevice(object sender, ConnectionMonitorArgs e)
         {
             foreach (var device in e.Devices)
             {
                 var ldevice = new Device
                 {
-                    Id = device.Device,
+                    Name = device.Device,
                     Ip = device.IP,
                     Mode = device.Mode,
                     Model = device.Model,
@@ -57,7 +68,7 @@ namespace surtr.AndroidCtrlTestModule.Services
                     Serial = device.Serial,
                     State = device.State.ToString()
                 };
-                devices[ldevice.Id] = ldevice;
+                devices[ldevice.Serial] = ldevice;
 
                 if (this.InternalDevice != null)
                 {

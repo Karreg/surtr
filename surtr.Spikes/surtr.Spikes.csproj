@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>surtr.Spikes</RootNamespace>
     <AssemblyName>surtr.Spikes</AssemblyName>
@@ -36,6 +36,9 @@
     <StyleCopEnabled>True</StyleCopEnabled>
     <StyleCopTreatErrorsAsWarnings>False</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>surtr.Spikes.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AndroidCtrl">
       <HintPath>..\lib\AndroidCtrl.dll</HintPath>
@@ -51,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidConnectivity.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
