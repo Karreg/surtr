@@ -10,18 +10,10 @@ using Microsoft.Practices.Prism.Mvvm;
 
 namespace surtr.AndroidCtrlTestModule.Services
 {
-    public class FileTreeService : BindableBase, IDisposable
+    public class FileTreeService : BindableBase, IFileTreeService
     {
         private readonly string defaultFolder = string.Empty;
         private readonly IUnitOfExecution dispatcher;
-
-        public void SetDevice(Device device)
-        {
-            if (this.FolderSelected != null)
-            {
-                this.FolderSelected(this.defaultFolder);
-            }
-        }
 
         public FileTreeService(IUnitOfExecution dispatcher)
         {
@@ -33,6 +25,14 @@ namespace surtr.AndroidCtrlTestModule.Services
         public event Action<string> FileScanned;
 
         public event Action<string> DirectoryScanned;
+
+        public void SetDevice(Device device)
+        {
+            if (this.FolderSelected != null)
+            {
+                this.FolderSelected(this.defaultFolder);
+            }
+        }
 
         public void ScanDirectory(string path)
         {
@@ -61,5 +61,18 @@ namespace surtr.AndroidCtrlTestModule.Services
         public void Dispose()
         {
         }
+    }
+
+    public interface IFileTreeService : IDisposable
+    {
+        event Action<string> FolderSelected;
+
+        event Action<string> FileScanned;
+
+        event Action<string> DirectoryScanned;
+
+        void SetDevice(Device device);
+
+        void ScanDirectory(string path);
     }
 }

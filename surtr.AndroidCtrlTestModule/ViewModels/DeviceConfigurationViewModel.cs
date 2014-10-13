@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
-using AndroidCtrl.ADB;
 using Michonne.Interfaces;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
@@ -17,12 +15,12 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
         private List<string> path;
         private string currentFolder;
         private int folderItemCount;
-        private readonly FileTreeService fileTreeService;
+        private readonly IFileTreeService fileTreeService;
         private string selectedSubFolder;
         private IUnitOfExecution dispatcher;
         private const string UpFolder = "..";
 
-        public DeviceConfigurationViewModel(FileTreeService fileTreeService, IUnitOfExecution dispatcher)
+        public DeviceConfigurationViewModel(IFileTreeService fileTreeService, IUnitOfExecution dispatcher)
         {
             this.dispatcher = dispatcher;
 

@@ -12,10 +12,10 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
     public class DeviceMonitorViewModel : BindableBase, IDisposable
     {
         private readonly DeviceMonitor deviceMonitor;
-        private readonly FileTreeService fileTreeService;
+        private readonly IFileTreeService fileTreeService;
         private Device selectedDevice;
         
-        public DeviceMonitorViewModel(DeviceMonitor deviceMonitor, FileTreeService fileTreeService)
+        public DeviceMonitorViewModel(DeviceMonitor deviceMonitor, IFileTreeService fileTreeService)
         {
             this.Devices = new ObservableCollection<Device>();
             this.deviceMonitor = deviceMonitor;

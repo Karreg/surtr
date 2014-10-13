@@ -88,6 +88,7 @@
     <Compile Include="Services\Device.cs" />
     <Compile Include="Services\DeviceMonitor.cs" />
     <Compile Include="Services\FileTreeService.cs" />
+    <Compile Include="Services\IDeviceMonitor.cs" />
     <Compile Include="ViewModels\DeviceMonitorViewModel.cs" />
     <Compile Include="Views\DeviceConfigurationView.xaml.cs">
       <DependentUpon>DeviceConfigurationView.xaml</DependentUpon>

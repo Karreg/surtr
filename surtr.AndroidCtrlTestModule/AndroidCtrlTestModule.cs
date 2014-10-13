@@ -45,12 +45,10 @@ namespace surtr.AndroidCtrlTestModule
             var rootDispatcher = this.unityContainer.Resolve<UnitOfExecutionsFactory>().GetDedicatedThread();
             this.unityContainer.RegisterInstance(rootDispatcher);
 
-            var deviceMonitor = new DeviceMonitor(rootDispatcher);
-            deviceMonitor.Start();
-            this.unityContainer.RegisterInstance(deviceMonitor, this.ContainerControlledLifetimeManager);
+            this.unityContainer.RegisterType<IDeviceMonitor, DeviceMonitor>(this.ContainerControlledLifetimeManager);
+            this.unityContainer.Resolve<IDeviceMonitor>().Start();
 
-            var fileTreeService = new FileTreeService(rootDispatcher);
-            this.unityContainer.RegisterInstance(fileTreeService, this.ContainerControlledLifetimeManager);
+            this.unityContainer.RegisterType<IFileTreeService, FileTreeService>(this.ContainerControlledLifetimeManager);
         }
 
         public LifetimeManager ContainerControlledLifetimeManager { get { return new ContainerControlledLifetimeManager(); } }

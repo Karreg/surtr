@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using AndroidCtrl;
 using AndroidCtrl.ADB;
 using AndroidCtrl.Logging;
@@ -9,7 +10,7 @@ using Michonne.Interfaces;
 
 namespace surtr.AndroidCtrlTestModule.Services
 {
-    public class DeviceMonitor : IDisposable
+    public class DeviceMonitor : IDeviceMonitor
     {
         private readonly Dictionary<string, Device> devices;
         private readonly IUnitOfExecution dispatcher;

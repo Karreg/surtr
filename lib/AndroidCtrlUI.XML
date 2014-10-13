@@ -1,0 +1,2430 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AndroidCtrlUI</name>
+    </assembly>
+    <members>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.Copy">
+            <summary>
+            Interaktionslogik für copy.xaml
+            </summary>
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Copy.#ctor(System.String,System.String,System.String,System.String,System.Collections.Specialized.StringCollection)">
+            <summary>
+             Manage the file/folder copy/move on/between different systems
+            </summary>
+            <param name="device">device id</param>
+            <param name="sender">Sender view (android|ftp|joomla|local|empty string)</param>
+            <param name="receiver">Receiver view (android|ftp|joomla|local)</param>
+            <param name="destDirName">Destination Directory</param>
+            <param name="data">StringCollection (GetFileDropList())</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Copy.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Copy.Dispose(System.Boolean)">
+            <summary>
+             virtual IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Copy.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.CopyModel">
+            <summary>
+             CopyModel it supports copy/move to the device and copy/move from the device. This model use my UTF8 wrapper to transfer files/folders.
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.CopyModel.#ctor(System.String,System.String,System.String,System.String,System.Collections.Specialized.StringCollection)">
+            <summary>
+             Manage the file/folder copy/move on/between Android/Windows
+            </summary>
+            <param name="device">device id</param>
+            <param name="sender">Sender view (android|ftp|joomla|local|empty string)</param>
+            <param name="receiver">Receiver view (android|ftp|joomla|local)</param>
+            <param name="destDirName">Destination Directory</param>
+            <param name="data">StringCollection (GetFileDropList())</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.CopyModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.CopyModel.DirectoryCopyTo(System.String,System.String)">
+            <summary>
+             Copy the given directory to the given path (recursive)
+            </summary>
+            <param name="sourceDirName">Source Directory</param>
+            <param name="destDirName">Destination Directory</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.CopyModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.Done">
+            <summary>
+             Returns true if copy is done/canceled, false if not.
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.Element">
+            <summary>
+             Current element
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.Elements">
+            <summary>
+             All elements in the queue
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.ElementList">
+            <summary>
+             Element list
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.CurrentElement">
+            <summary>
+             Current element path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.Receiver">
+            <summary>
+             Receiver view
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.Sender">
+            <summary>
+             Sender view
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.CopyModel.ICancel">
+            <summary>
+             Get ICancel command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.Actions.CopyModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.CopyModel.IICancel">
+            <summary>
+             ICancel command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.Tar">
+            <summary>
+             Tar Create/Extract window
+            </summary>
+            <summary>
+            Tar
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Tar.#ctor(System.String,System.Collections.Generic.List{AndroidCtrlUI.Explorer.Actions.DataModelTar},System.Boolean)">
+            <summary>
+             Creates the tar window
+            </summary>
+            <param name="deviceID">Device ID</param>
+            <param name="elements">Elements to de-/compress</param>
+            <param name="tar">true to compress / false to decompress</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Tar.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Tar.Dispose(System.Boolean)">
+            <summary>
+             virtual IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Tar.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.TarModel">
+            <summary>
+             TarModel it supports de-/compress
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.TarModel.#ctor(System.String,System.Collections.Generic.List{AndroidCtrlUI.Explorer.Actions.DataModelTar},System.Boolean)">
+            <summary>
+             Creates the TarModel
+            </summary>
+            <param name="deviceID">Device ID</param>
+            <param name="elements">Elements</param>
+            <param name="tar">true to compress / false to decompress</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.TarModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.TarModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.Done">
+            <summary>
+             Returns true if copy is done/canceled, false if not.
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.Element">
+            <summary>
+             Current element
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.Elements">
+            <summary>
+             All elements in the queue
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.ElementList">
+            <summary>
+             Element list
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.CurrentElement">
+            <summary>
+             Current element path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.Mode">
+            <summary>
+             Returns the mode, (true)Tar / (false)Untar
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.TarModel.ICancel">
+            <summary>
+             Get ICancel command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.Actions.TarModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.TarModel.IICancel">
+            <summary>
+             ICancel command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.DataModelTar">
+            <summary>
+             DataModelTar Object
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DataModelTar.#ctor(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+             Create the DataModelTar Object for extraction
+            </summary>
+            <param name="path">Path (file/folder)</param>
+            <param name="elements">List string (file/folder NAMES only no PATHS)</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DataModelTar.#ctor(AndroidCtrl.IDFileSystem,System.String,AndroidCtrl.IDTar,System.Collections.Generic.List{System.String})">
+            <summary>
+             Create the DataModelTar Object for compression
+            </summary>
+            <param name="type">IDFileSystem</param>
+            <param name="path">Path (file/folder)</param>
+            <param name="compression">IDTar</param>
+            <param name="elements">List string (file/folder NAMES only no PATHS)</param>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelTar.Type">
+            <summary>
+             Type (IDFileSystem)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelTar.Path">
+            <summary>
+             Path (file/folder)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelTar.Compression">
+            <summary>
+             Compression (IDTar)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelTar.Elements">
+            <summary>
+             ToTar (List string (file/folder NAMES only no PATHS))
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.DataModelDelete">
+            <summary>
+             DataModelDelete Object
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DataModelDelete.#ctor(AndroidCtrl.IDFileSystem,System.String)">
+            <summary>
+             Creates the DataModelDelete Object
+            </summary>
+            <param name="type">(IDFileSystem)</param>
+            <param name="path">Path (file/folder)</param>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelDelete.Type">
+            <summary>
+             Type (IDFileSystem)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelDelete.Path">
+            <summary>
+             Path (file/folder)
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.DataModelConfirm">
+            <summary>
+             DataModelConfirm Object
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DataModelConfirm.#ctor(System.String,System.String,System.String)">
+            <summary>
+             Creates the DataModelConfirm Object
+            </summary>
+            <param name="path">Path (file/folder)</param>
+            <param name="pathTo">Path (file/folder)</param>
+            <param name="state">(CREATED, ERROR, OK)</param>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelConfirm.Path">
+            <summary>
+             Path (file/folder)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelConfirm.PathTo">
+            <summary>
+             Path (file/folder)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DataModelConfirm.State">
+            <summary>
+             State (CREATED, ERROR, OK)
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.Delete">
+            <summary>
+             Delete window
+            </summary>
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Delete.#ctor(System.String,System.Collections.Generic.List{AndroidCtrlUI.Explorer.Actions.DataModelDelete})">
+            <summary>
+             Creates the Delete window
+            </summary>
+            <param name="device">DeviceID</param>
+            <param name="todelete">List DataModelDelete</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Delete.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Delete.Dispose(System.Boolean)">
+            <summary>
+             virtual IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Delete.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.DeleteModel">
+            <summary>
+             DeleteModel it supports files/folders.
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DeleteModel.#ctor(System.String,System.Collections.Generic.List{AndroidCtrlUI.Explorer.Actions.DataModelDelete})">
+            <summary>
+             Manage the file/folder delete on the Android systems
+            </summary>
+            <param name="device">DeviceID</param>
+            <param name="todelete">List DataModelDelete</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DeleteModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DeleteModel.DoDelete">
+            <summary>
+             Start the background thread which do the whole work
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.DeleteModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.Done">
+            <summary>
+             Returns true if copy is done/canceled, false if not.
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.Element">
+            <summary>
+             Current element
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.Elements">
+            <summary>
+             All elements in the queue
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.ElementList">
+            <summary>
+             Element list
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.CurrentElement">
+            <summary>
+             Current element path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.DeleteModel.ICancel">
+            <summary>
+             Get ICancel command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.Actions.DeleteModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.DeleteModel.IICancel">
+            <summary>
+             ICancel command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.Properties">
+            <summary>
+             Properties window
+            </summary>
+            <summary>
+            Properties
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Properties.#ctor(System.String,AndroidCtrl.DataModelFileSystemItem)">
+            <summary>
+             Creates the properties window
+            </summary>
+            <param name="deviceID">Device ID</param>
+            <param name="element">Element to show</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Properties.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Properties.Dispose(System.Boolean)">
+            <summary>
+             virtual IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.Properties.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.Actions.Properties.Callback">
+            <summary>
+             Refresh callback event
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.Properties.CallbackRefresh">
+            <summary>
+             Refresh callback delegate
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">RoutedEventArgs</param>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.Actions.PropertiesModel">
+            <summary>
+             PropertiesModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.PropertiesModel.#ctor(System.String,AndroidCtrl.DataModelFileSystemItem)">
+            <summary>
+             Creates the PropertiesModel
+            </summary>
+            <param name="deviceID">Device ID</param>
+            <param name="element">Element to show</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Save">
+            <summary>
+             Trys to set the changed values
+            </summary>
+            <returns>bool</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.Actions.PropertiesModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Changes">
+            <summary>
+             Returns true if the user something changed
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Element">
+            <summary>
+             The current element
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.EIcon">
+            <summary>
+             Returns a BitmapImage, trys to get the real assigned icon
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.EName">
+            <summary>
+             Element name
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Permissions">
+            <summary>
+             Element permissions
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodOW">
+            <summary>
+             Chmod Owner Write
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodOR">
+            <summary>
+             Chmod Owner Read
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodOE">
+            <summary>
+             Chmod Owner Execute
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodOS">
+            <summary>
+             Chmod Owner Sticky (SUID)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodGW">
+            <summary>
+             Chmod Group Write
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodGR">
+            <summary>
+             Chmod Group Read
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodGE">
+            <summary>
+             Chmod Group Execute
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodGS">
+            <summary>
+             Chmod Group Sticky (SGID)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodPW">
+            <summary>
+             Chmod Public Write
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodPR">
+            <summary>
+             Chmod Public Read
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodPE">
+            <summary>
+             Chmod Public Execute
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.ChmodPS">
+            <summary>
+             Chmod Public Sticky (Sticky)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.Actions.PropertiesModel.Size">
+            <summary>
+             Element calculated size
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.Actions.PropertiesModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarBoxModel">
+            <summary>
+             AdressBarBoxModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             AdressBarBoxModel-Constructor
+            </summary>
+            <param name="basemodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxModel.Clear">
+            <summary>
+             Clear the elements and dispose each item
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxModel.Elements">
+            <summary>
+             Get the Elements ObservableCollection string
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxModel.SelectedItem">
+            <summary>
+             Selected adress box item
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxModel.IOnKeyDown">
+            <summary>
+             Get IOnKeyDown command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxModel.IOnSelectionChanged">
+            <summary>
+             Get IOnSelectionChanged command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxModel.INavigate">
+            <summary>
+             Get INavigate command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.AdressBarBoxModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarBoxModel.IIOnKeyDown">
+            <summary>
+             IOnKeyDown command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarBoxModel.IIOnSelectionChanged">
+            <summary>
+             IOnSelectionChanged command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarBoxModel.IINavigate">
+            <summary>
+             INavigate command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel">
+            <summary>
+             AdressBarSpecialFolderItemModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.#ctor(System.String,System.String,System.Windows.Media.Imaging.BitmapImage,AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel)">
+            <summary>
+             AdressBarSpecialFolderItemModel-Constructor
+            </summary>
+            <param name="name">Name</param>
+            <param name="path">Navigation path</param>
+            <param name="icon">Icon BitmapImage</param>
+            <param name="rootmodel">Holds the parent AdressBarSpecialFolderModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.Name">
+            <summary>
+             Name
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.Path">
+            <summary>
+             Path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.Icon">
+            <summary>
+             Icon
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.IsSelected">
+            <summary>
+             Set/Get IsSelected
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.AdressBarSpecialFolderItemModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarBoxItemModel">
+            <summary>
+             AdressBarBoxItemModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.#ctor(System.String,AndroidCtrlUI.Explorer.AdressBarBoxModel)">
+            <summary>
+             AdressBarBoxItemModel-Constructor
+            </summary>
+            <param name="path">Navigation path</param>
+            <param name="rootmodel">Holds the parent AdressBarSpecialFolderModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.Path">
+            <summary>
+             Path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.IsSelected">
+            <summary>
+             Set/Get IsSelected
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.AdressBarBoxItemModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel">
+            <summary>
+             AdressBarSpecialFolderModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             AdressBarSpecialFolderModel-Constructor
+            </summary>
+            <param name="basemodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.Clear">
+            <summary>
+             Clear the elements and dispose each item
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.Elements">
+            <summary>
+             Get the Elements ObservableCollection string
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.SelectedItem">
+            <summary>
+             Selected special folder item
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.IOnSelectionChanged">
+            <summary>
+             Get IOnSelectionChanged command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.AdressBarSpecialFolderModel.IIOnSelectionChanged">
+            <summary>
+             IOnSelectionChanged command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceConnectorModel">
+            <summary>
+             DeviceConnectorModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceConnectorModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             Creates the DeviceConnectorModel
+            </summary>
+            <param name="basemodel">FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceConnectorModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceConnectorModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.IP">
+            <summary>
+             Get/Set the device ip
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.Port">
+            <summary>
+             Get/Set the device port
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.IConnect">
+            <summary>
+             Get IConnect command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.IGotFocus">
+            <summary>
+             Get IGotFocus command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.IIPLostFocus">
+            <summary>
+             Get IIPLostFocus command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceConnectorModel.IPortLostFocus">
+            <summary>
+             Get IPortLostFocus command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.DeviceConnectorModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceConnectorModel.IIConnect">
+            <summary>
+             IConnect command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceConnectorModel.IIGotFocus">
+            <summary>
+             IGotFocus command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceConnectorModel.IIIPLostFocus">
+            <summary>
+             IIPLostFocus command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceConnectorModel.IIPortLostFocus">
+            <summary>
+             IPortLostFocus command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceSelectorModel">
+            <summary>
+             DeviceSelectorModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceSelectorModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             Creates the DeviceSelectorModel
+            </summary>
+            <param name="basemodel">FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceSelectorModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.DeviceSelectorModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceSelectorModel.Elements">
+            <summary>
+             Returns the real elements
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceSelectorModel.ComboElements">
+            <summary>
+             Returns the ComboBox elements
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceSelectorModel.SelectInDll">
+            <summary>
+             This will select the selected device also in the whole dll instance.
+            <para>*NOTE* So u can use the selected device as described in AndroidCtrl.ADB.Instance() or AndroidCtrl.Fastboot.Instance().</para>
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceSelectorModel.SelectedItem">
+            <summary>
+             Selected device selector selected item
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.DeviceSelectorModel.IOnSelectionChanged">
+            <summary>
+             Get IOnSelectionChanged command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.DeviceSelectorModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.DeviceSelectorModel.IIOnSelectionChanged">
+            <summary>
+             IOnSelectionChanged command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.FileSystemViewModel">
+            <summary>
+             FileSystemViewModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.FileSystemViewModel.#ctor(System.String)">
+            <summary>
+             Creates the FileSystemViewModel
+            </summary>
+            <param name="device">Device serial or null</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.FileSystemViewModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.FileSystemViewModel.NavigateTo(System.String)">
+            <summary>
+             Navigates to the given directory if it's exists
+            </summary>
+            <param name="path">string physicalpath</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.FileSystemViewModel.NavigateToParent">
+            <summary>
+             Navigates to the parent directory if not in device root
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.FileSystemViewModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.CurrentPath">
+            <summary>
+             Returns the current navigation path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.AdressBarBox">
+            <summary>
+             Returns the AdressBarBox model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.AdressBarSpecialFolder">
+            <summary>
+             Returns the AdressBarSpecialFolder model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.DeviceSelector">
+            <summary>
+             Returns the DeviceSelector model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.DeviceConnector">
+            <summary>
+             Returns the DeviceConnectorModel model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.TreeView">
+            <summary>
+             Returns the TreeView model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.ListView">
+            <summary>
+             Returns the ListView model
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.FileSystemViewModel.ListViewInfoBar">
+            <summary>
+             Returns the ListViewInfoBar model
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.FileSystemViewModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ItemBehavior">
+            <summary>
+             XAML item behaviors
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.BringIntoViewProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetBringIntoView(System.Windows.Controls.TreeViewItem)">
+            <summary>
+             Get
+            </summary>
+            <param name="treeViewItem">TreeViewItem</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetBringIntoView(System.Windows.Controls.TreeViewItem,System.Boolean)">
+            <summary>
+             Set
+            </summary>
+            <param name="treeViewItem">TreeViewItem</param>
+            <param name="value">bool</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnBringIntoViewChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="depObj">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.BringIntoView(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">RoutedEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnGotFocusProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnGotFocus(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnGotFocus(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnGotFocusChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnGotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">RoutedEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnLostFocusProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnLostFocus(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnLostFocus(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnLostFocusChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnLostFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">RoutedEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnDragEnterProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnDragEnter(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnDragEnter(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnDragEnterChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnDragEnter(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">DragEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnDragLeaveProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnDragLeave(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnDragLeave(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnDragLeaveChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnDragLeave(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">DragEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnDragOverProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnDragOver(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnDragOver(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnDragOverChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnDragOver(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">DragEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnDropProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnDrop(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnDrop(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnDropChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnDrop(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">DragEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnKeyDownProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnKeyDown(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnKeyDown(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnKeyDownChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">KeyEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnKeyUpProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnKeyUp(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnKeyUp(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnKeyUpChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnKeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">KeyEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseDownProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnMouseDown(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnMouseDown(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnMouseDownChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseDown(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">MouseEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseLeftButtonDownProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnMouseLeftButtonDown(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnMouseLeftButtonDown(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnMouseLeftButtonDownChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">MouseButtonEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseLeftButtonUpProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnMouseLeftButtonUp(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnMouseLeftButtonUp(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnMouseLeftButtonUpChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">MouseButtonEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseMoveProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnMouseMove(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnMouseMove(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnMouseMoveChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnMouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">MouseEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.OnOnSelectionChangedProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetOnSelectionChanged(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetOnSelectionChanged(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnOnSelectionChangedChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnSelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">SelectionChangedEventArgs</param>
+        </member>
+        <member name="F:AndroidCtrlUI.Explorer.ItemBehavior.StartEditProperty">
+            <summary>
+             DependencyProperty
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.GetStartEdit(System.Windows.DependencyObject)">
+            <summary>
+             Get
+            </summary>
+            <param name="target">DependencyObject</param>
+            <returns>ICommand</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.SetStartEdit(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+             Set
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="value">ICommand</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.OnStartEditChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+             OnChanged
+            </summary>
+            <param name="target">DependencyObject</param>
+            <param name="e">DependencyPropertyChangedEventArgs</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ItemBehavior.StartEdit(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+             Worker
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">MouseButtonEventArgs</param>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewInfoBarModel">
+            <summary>
+             ListViewInfoBarModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewInfoBarModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             Creates the ListViewInfoBarModel
+            </summary>
+            <param name="basemodel">FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewInfoBarModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewInfoBarModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.IsItem">
+            <summary>
+             Checks if an item is selected ot not
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.ItemName">
+            <summary>
+             Element name
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.ItemSize">
+            <summary>
+             Element size
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.ItemDate">
+            <summary>
+             Element date
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.ItemIcon">
+            <summary>
+             Element icon
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.LocationIcon">
+            <summary>
+             Location icon (the current folder/mount/etc. u are viewing)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.Elements">
+            <summary>
+             Elements count
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.Folders">
+            <summary>
+             Folders count
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewInfoBarModel.Files">
+            <summary>
+             Files count
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.ListViewInfoBarModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel">
+            <summary>
+             ListViewItemModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewItemModel.#ctor(AndroidCtrl.DataModelFileSystemItem,AndroidCtrlUI.Explorer.ListViewModel)">
+            <summary>
+             ListViewItemModel-Constructor
+            </summary>
+            <param name="element">Holds the very simple element data</param>
+            <param name="rootmodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewItemModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewItemModel.Refresh">
+            <summary>
+             Refresh this model UI
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewItemModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.BusyBox">
+            <summary>
+             Check if busybox exists
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemName">
+            <summary>
+             Returns a string which contains the file,folder,drive volumelabel
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemPath">
+            <summary>
+             Returns a string which contains the physical file,folder path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSymPath">
+            <summary>
+             Returns a string which contains the physical file,folder path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemPerm">
+            <summary>
+             Returns a string which contains the creationdate
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemOwner">
+            <summary>
+             Returns a string which contains the creationdate
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemGroup">
+            <summary>
+             Returns a string which contains the creationdate
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSize">
+            <summary>
+             returns the item size as byte string
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSizeUsed">
+            <summary>
+             Returns a string which contains the calculated file-,wholespace(disks) size in Byte,KB,MB,GB,TB,PT,EB,ZB,YB
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSizeFree">
+            <summary>
+             Returns a string which contains the calculated file-,wholespace(disks) size in Byte,KB,MB,GB,TB,PT,EB,ZB,YB
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSizeUse">
+            <summary>
+             Returns a string which contains the calculated used space in (%)
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemSizeBlock">
+            <summary>
+             Returns a string which contains the item block size
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemDate">
+            <summary>
+             Returns a string which contains the creationdate
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemType">
+            <summary>
+             Returns a string which contains the filetype (exe,gif,wmv,etc) or folder,drive
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemID">
+            <summary>
+             Returns a string which contains the element ID file,folder,drive
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ItemIcon">
+            <summary>
+             Returns a BitmapImage, trys to get the real assigned icon
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IsSelected">
+            <summary>
+             Set/Get IsSelected
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.RenameState">
+            <summary>
+             Set/Get RenameState
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ICopy">
+            <summary>
+             Get ICopy command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.ITar">
+            <summary>
+             Get ITar command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IPaste">
+            <summary>
+             Get IPaste command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IDelete">
+            <summary>
+             Get IDelete command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnDragEnter">
+            <summary>
+             Get IOnDragEnter command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnDragLeave">
+            <summary>
+             Get IOnDragLeave command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnDrop">
+            <summary>
+             Get IOnDrop command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnMouseLeftButtonDown">
+            <summary>
+             Get IOnMouseLeftButtonDown command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnMouseLeftButtonUp">
+            <summary>
+             Get IOnMouseLeftButtonUp command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOnMouseMove">
+            <summary>
+             Get IOnMouseMove command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IOpen">
+            <summary>
+             Get IOpen command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IProperties">
+            <summary>
+             Get IProperties command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IRename">
+            <summary>
+             Get IRename command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewItemModel.IRenameSave">
+            <summary>
+             Get IRenameSave command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.ListViewItemModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IICopy">
+            <summary>
+             ICopy command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IITar">
+            <summary>
+             ITar command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIPaste">
+            <summary>
+             IPaste command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIDelete">
+            <summary>
+             IDelete command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnDragEnter">
+            <summary>
+             IOnDragEnter command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnDragLeave">
+            <summary>
+             IOnDragLeave command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnDrop">
+            <summary>
+             IOnDrop command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnMouseLeftButtonDown">
+            <summary>
+             IOnMouseLeftButtonDown command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnMouseLeftButtonUp">
+            <summary>
+             IOnMouseLeftButtonUp command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOnMouseMove">
+            <summary>
+             IOnMouseMove command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIOpen">
+            <summary>
+             IOpen command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIProperties">
+            <summary>
+             IProperties command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIRename">
+            <summary>
+             IRename command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewItemModel.IIRenameSave">
+            <summary>
+             IRenameSave command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel">
+            <summary>
+             ListViewModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             Creates the ListViewModel
+            </summary>
+            <param name="basemodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.Clear">
+            <summary>
+             Clear the elements and dispose each item
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.SearchItem(System.String)">
+            <summary>
+             Search for given path and return the model if an item exists
+            </summary>
+            <param name="path">string filepath</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.ReadDirectory(System.String)">
+            <summary>
+             Read the given directory
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.Refresh">
+            <summary>
+             Refresh the listview object
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.StopSelection">
+            <summary>
+             Stops all IsSelected stages
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.StopRename">
+            <summary>
+             Stops all Rename stages
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.Delete">
+            <summary>
+             Delete the selected item(s) from the device
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.SortElements">
+            <summary>
+             Sort the elements
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.ListViewModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.Elements">
+            <summary>
+             Get the Elements ObservableCollection ItemViewModel
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.SortType">
+            <summary>
+             Set/Get the sort type
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.SortDirection">
+            <summary>
+             Set/Get the sort direction
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.Cursor">
+            <summary>
+             Sent/Get the cursor style
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.Layout">
+            <summary>
+             Defines the ListView layout
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.Mode">
+            <summary>
+             Returns the ListView view mode for column selection
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IRefresh">
+            <summary>
+             Get IRefresh command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.ISortBy">
+            <summary>
+             Get ISortBy command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.ILayout">
+            <summary>
+             Get ILayout command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnDragEnter">
+            <summary>
+             Get IOnDragEnter command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnDragLeave">
+            <summary>
+             Get ListOnDragLeave command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnDrop">
+            <summary>
+             Get IOnDrop command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnKeyUp">
+            <summary>
+             Get IOnKeyUp command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnKeyDown">
+            <summary>
+             Get IOnKeyDown command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IOnMouseDown">
+            <summary>
+             Get IOnMouseDown command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.ListViewModel.IPaste">
+            <summary>
+             Get IPaste command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.ListViewModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIRefresh">
+            <summary>
+             IRefresh command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IISortBy">
+            <summary>
+             ISortBy command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IILayout">
+            <summary>
+             ILayout command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnDragEnter">
+            <summary>
+             IOnDragEnter command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnDragLeave">
+            <summary>
+             IOnDragLeave command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnDrop">
+            <summary>
+             IOnDrop command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnKeyUp">
+            <summary>
+             IOnKeyUp command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnKeyDown">
+            <summary>
+             IOnKeyDown command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIOnMouseDown">
+            <summary>
+             IOnMouseDown command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.ListViewModel.IIPaste">
+            <summary>
+             IPaste command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel">
+            <summary>
+             TreeViewItemModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.#ctor(AndroidCtrl.DataModelFileSystemItem,AndroidCtrlUI.Explorer.TreeViewItemModel,AndroidCtrlUI.Explorer.TreeViewModel)">
+            <summary>
+             TreeViewItemModel-Constructor
+            </summary>
+            <param name="element">Holds the very simple element data</param>
+            <param name="parent">Holds the parent element</param>
+            <param name="rootmodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.ClearChildren">
+            <summary>
+             Clear the children and dispose each item
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.Refresh">
+            <summary>
+             Refresh this model UI
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.LoadChildren">
+            <summary>
+             Create the child items on demand
+             *overwrites the TreeViewItemBaseModel method*
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewItemModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemName">
+            <summary>
+             Returns a string which contains the file,folder,drive label
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemPath">
+            <summary>
+             Returns a string which contains the physical file,folder path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemSymPath">
+            <summary>
+             Returns a string which contains the physical file,folder path
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemType">
+            <summary>
+             Returns a string which contains the filetype (exe,gif,wmv,etc) or folder,drive
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemID">
+            <summary>
+             Returns a string which contains the element ID file,folder
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.ItemIcon">
+            <summary>
+             Returns a BitmapImage, trys to get the real assigned icon
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.Children">
+            <summary>
+             Return the child items
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.HasDummyChild">
+            <summary>
+             Check if child is a dummy
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IsSelected">
+            <summary>
+             Set/Get IsSelected
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IsExpanded">
+            <summary>
+             Set/Get IsExpanded
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.RenameState">
+            <summary>
+             Set/Get RenameState
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOnDragEnter">
+            <summary>
+             Get IOnDragEnter command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOnDragLeave">
+            <summary>
+             Get IOnDragLeave command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOnDrop">
+            <summary>
+             Get IOnDrop command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOnMouseLeftButtonDown">
+            <summary>
+             Get IOnMouseLeftButtonDown command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOnMouseMove">
+            <summary>
+             Get IOnMouseMove command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IOpen">
+            <summary>
+             Get IOpen command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IRename">
+            <summary>
+             Get IRename command
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewItemModel.IRenameSave">
+            <summary>
+             Get IRenameSave command
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.TreeViewItemModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOnDragEnter">
+            <summary>
+             IOnDragEnter command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOnDragLeave">
+            <summary>
+             IOnDragLeave command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOnDrop">
+            <summary>
+             IOnDrop command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOnMouseLeftButtonDown">
+            <summary>
+             IOnMouseLeftButtonDown command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOnMouseMove">
+            <summary>
+             IOnMouseMove command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIOpen">
+            <summary>
+             IOpen command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIRename">
+            <summary>
+             IRename command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewItemModel.IIRenameSave">
+            <summary>
+             IRenameSave command sub class
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.Explorer.TreeViewModel">
+            <summary>
+             TreeViewModel
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.#ctor(AndroidCtrlUI.Explorer.FileSystemViewModel)">
+            <summary>
+             TreeViewModel-Constructor
+            </summary>
+            <param name="basemodel">Holds the parent FileSystemViewModel</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.Dispose">
+            <summary>
+             IDisposable
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.Clear">
+            <summary>
+             Clear the elements and dispose each item
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.SelectItem(System.String)">
+            <summary>
+             Select the given item if the path exists
+            </summary>
+            <param name="path">string filepath</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.SearchItem(System.String,AndroidCtrlUI.Explorer.TreeViewItemModel,System.Boolean)">
+            <summary>
+             Search for given path and return the model if an item exists
+            </summary>
+            <param name="path">string filepath</param>
+            <param name="item">TreeViewItemModel to deep search</param>
+            <param name="expanditem">Expand the item</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.ReadDirectory(System.String)">
+            <summary>
+             Read the given directory
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.StopRename(AndroidCtrlUI.Explorer.TreeViewItemModel)">
+            <summary>
+             Stops all Rename stages
+            </summary>
+            <param name="item">TreeViewItemModel to deep rename stop</param>
+        </member>
+        <member name="M:AndroidCtrlUI.Explorer.TreeViewModel.OnPropertyChanged(System.String)">
+            <summary>
+             Notify the UI for changes
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewModel.Elements">
+            <summary>
+             Get the Elements ObservableCollection ItemViewModel
+            </summary>
+        </member>
+        <member name="P:AndroidCtrlUI.Explorer.TreeViewModel.Cursor">
+            <summary>
+             Sent/Get the cursor style
+            </summary>
+        </member>
+        <member name="E:AndroidCtrlUI.Explorer.TreeViewModel.PropertyChanged">
+            <summary>
+             PropertyChanged event handler
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.InternalHelper.GetProjectImage(System.String)">
+            <summary>
+             Gets an icon,image in this project included
+            </summary>
+            <param name="path">string virtual path</param>
+            <returns>BitmapImage</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.InternalHelper.IconToBitmapImage(System.Drawing.Icon)">
+            <summary>
+             Icon to BitmapImage Converter
+            </summary>
+            <param name="icon">Icon source</param>
+            <returns>BitmapImage</returns>
+        </member>
+        <member name="M:AndroidCtrlUI.InternalHelper.IconToBitmapSource(System.Drawing.Icon)">
+            <summary>
+             Icon to BitmapSource Converter
+            </summary>
+            <param name="icon">Icon source</param>
+            <returns>BitmapSource</returns>
+        </member>
+        <member name="T:AndroidCtrlUI.Tools.Language">
+            <summary>
+             This class give u the ability to easy load the included languages.
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Tools.Language.AutoLoad">
+            <summary>
+             Checks which windows language is used and trys to load the correct language if available, else, it will fallback to english.
+            </summary>
+        </member>
+        <member name="M:AndroidCtrlUI.Tools.Language.Set(System.String)">
+            <summary>
+             Loads the given language if available else it will fallback to english.
+            </summary>
+            <param name="langkey">Lang-Key e.g. de-DE, en-GB, etc.</param>
+        </member>
+        <member name="T:AndroidCtrlUI.IDListMode">
+            <summary>
+             IDListMode implies the ListView view mode
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListMode.NONE">
+            <summary>
+             Implies None (fallback value)
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListMode.DEVICE">
+            <summary>
+             Implies Big Icons
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListMode.FILESYSTEM">
+            <summary>
+             Implies detail
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.IDListLayout">
+            <summary>
+             IDListLayout implies the ListView view layout
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListLayout.NONE">
+            <summary>
+             Implies None (fallback value)
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListLayout.BIGICONS">
+            <summary>
+             Implies Big Icons
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListLayout.DETAIL">
+            <summary>
+             Implies detail
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListLayout.LIST">
+            <summary>
+             Implies simple list
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.IDListSortType">
+            <summary>
+             IDListSortType implies the ListView sort types
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortType.NONE">
+            <summary>
+             Implies None (fallback value)
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortType.NAME">
+            <summary>
+             Implies name
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortType.SIZE">
+            <summary>
+             Implies size
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortType.DATE">
+            <summary>
+             Implies date
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortType.TYPE">
+            <summary>
+             Implies type
+            </summary>
+        </member>
+        <member name="T:AndroidCtrlUI.IDListSortDirection">
+            <summary>
+             IDListSortDirection implies the ListView sort direction
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortDirection.NONE">
+            <summary>
+             Implies None (fallback value)
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortDirection.ASCENDING">
+            <summary>
+             Implies name
+            </summary>
+        </member>
+        <member name="F:AndroidCtrlUI.IDListSortDirection.DESCENDING">
+            <summary>
+             Implies name
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
