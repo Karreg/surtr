@@ -1,7 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using AndroidCtrl.ADB;
+using Michonne.Interfaces;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using surtr.AndroidCtrlTestModule.Services;
@@ -10,20 +14,32 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
 {
     public class DeviceConfigurationViewModel : BindableBase
     {
+        private List<string> path;
         private string currentFolder;
         private int folderItemCount;
         private readonly FileTreeService fileTreeService;
         private string selectedSubFolder;
+        private IUnitOfExecution dispatcher;
+        private const string UpFolder = "..";
 
-        public DeviceConfigurationViewModel(FileTreeService fileTreeService)
+        public DeviceConfigurationViewModel(FileTreeService fileTreeService, IUnitOfExecution dispatcher)
         {
+            this.dispatcher = dispatcher;
+
             this.FolderItems = new ObservableCollection<string>();
+            this.FolderItems.Add(UpFolder);
             this.FileItems = new ObservableCollection<string>();
+            path = new List<string>();
 
             this.SynchronizeCommand = new DelegateCommand(() => MessageBox.Show("Sync!"));
+            this.ChangeDirectoryCommand = new DelegateCommand(this.Rescan);
 
             this.fileTreeService = fileTreeService;
-            this.fileTreeService.FolderSelected += f => this.CurrentFolder = f;
+            this.fileTreeService.FolderSelected += f =>
+            {
+                this.CurrentFolder = f;
+                this.Rescan();
+            };
             this.fileTreeService.DirectoryScanned += this.OnDirectoryScanned;
             this.fileTreeService.FileScanned += this.OnFileScanned;
         }
@@ -33,11 +49,11 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
             get { return currentFolder; }
             set
             {
-                if (value != null && this.currentFolder != value)
+                if (value != null && (this.currentFolder != value || value == UpFolder))
                 {
                     currentFolder = value;
                     this.OnPropertyChanged("CurrentFolder");
-                    this.Rescan();
+                    //this.Rescan();
                 }
 
             }
@@ -50,7 +66,15 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
             {
                 if (value != null)
                 {
-                    this.CurrentFolder = string.Format("{0}/{1}", this.CurrentFolder, value).Replace("//", "/");
+                    if (value == UpFolder)
+                    {
+                        this.path.RemoveAt(this.path.Count-1);
+                    }
+                    else
+                    {
+                        this.path.Add(value);
+                    }
+                    this.CurrentFolder = string.Format("/{0}", this.path.Count > 0 ? this.path.Aggregate((i,j) => i+"/"+j) : string.Empty);
                     this.selectedSubFolder = value;
                 }
             }
@@ -63,8 +87,12 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
                 this.FolderItemCount = 0;
                 this.FileItems.Clear();
                 this.FolderItems.Clear();
+                this.FolderItems.Add(UpFolder);
             });
-            this.fileTreeService.ScanDirectory(this.currentFolder);
+            this.dispatcher.Dispatch(() =>
+            {
+                this.fileTreeService.ScanDirectory(this.currentFolder);
+            });
         }
 
         public int FolderItemCount
@@ -81,22 +109,24 @@ namespace surtr.AndroidCtrlTestModule.ViewModels
 
         public ObservableCollection<string> FileItems { get; private set; }
 
+        public ICommand ChangeDirectoryCommand { get; private set; }
+
         public ICommand SynchronizeCommand { get; private set; }
 
         private void OnFileScanned(string file)
         {
-            this.FolderItemCount++;
             Application.Current.Dispatcher.Invoke(() =>
             {
+                this.FolderItemCount++;
                 this.FileItems.Add(file);
             });
         }
 
         private void OnDirectoryScanned(string directory)
         {
-            this.FolderItemCount++;
             Application.Current.Dispatcher.Invoke(() =>
             {
+                this.FolderItemCount++;
                 this.FolderItems.Add(directory);
             });
         }

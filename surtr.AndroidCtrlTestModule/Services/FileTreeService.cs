@@ -12,14 +12,14 @@ namespace surtr.AndroidCtrlTestModule.Services
 {
     public class FileTreeService : BindableBase, IDisposable
     {
-        private const string DefaultFolder = "/sdcard/eBooks";
+        private readonly string defaultFolder = string.Empty;
         private readonly IUnitOfExecution dispatcher;
 
         public void SetDevice(Device device)
         {
             if (this.FolderSelected != null)
             {
-                this.FolderSelected(DefaultFolder);
+                this.FolderSelected(this.defaultFolder);
             }
         }
 
@@ -47,7 +47,7 @@ namespace surtr.AndroidCtrlTestModule.Services
                     }
                 }
 
-                var files = ADB.Instance().Device.Directories(DefaultFolder).GetFiles();
+                var files = ADB.Instance().Device.Directories(path).GetFiles();
                 if (this.FileScanned != null)
                 {
                     foreach (var file in files)

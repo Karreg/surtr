@@ -22,7 +22,17 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Grid.Column="0">
-                <ListView ItemsSource="{Binding FolderItems}" Height="Auto" SelectedItem="{Binding SelectedSubFolder}" />
+                <ListView ItemsSource="{Binding FolderItems}" Height="Auto" SelectedItem="{Binding CurrentFolder}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=.}" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.ChangeDirectoryCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </ScrollViewer>
             <ScrollViewer Grid.Column="1">
                 <ListView ItemsSource="{Binding FileItems}" Height="Auto" />
