@@ -43,15 +43,12 @@ namespace surtr.AndroidCtrlTestModule.Services
             {
                 Logger.Active = true; //default is false
                 Logger.WriteParts = true; //default is false
-                try
-                {
-                    Deploy.ADB();
-                }
-                catch (Exception e)
-                {
-                }
+                Deploy.ADB();
 
-                ADB.Start();
+                if (!ADB.IsStarted())
+                {
+                    ADB.Start();
+                }
 
                 ADB.ConnectionMonitor.Callback += this.OnDevice;
 
