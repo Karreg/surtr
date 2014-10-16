@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using Michonne.Implementation;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -40,6 +41,11 @@ namespace surtr.AndroidCtrlTestModule
 
         private void RegisterServices()
         {
+            ILog logger = LogManager.GetLogger("surtr");
+            this.unityContainer.RegisterInstance<ILog>(logger);
+
+            logger.InfoFormat("Starting surtr...");
+
             this.unityContainer.RegisterInstance(new UnitOfExecutionsFactory(), this.ContainerControlledLifetimeManager);
 
             var rootDispatcher = this.unityContainer.Resolve<UnitOfExecutionsFactory>().GetDedicatedThread();

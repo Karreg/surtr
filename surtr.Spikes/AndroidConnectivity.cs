@@ -12,8 +12,8 @@ namespace surtr.Spikes
     {
         public void Connect()
         {
-            Logger.Active = true;
-            Logger.WriteParts = true;
+            Logger.Instance.Active = true;
+            Logger.Instance.WriteParts = true;
             Deploy.ADB();
         }
 
