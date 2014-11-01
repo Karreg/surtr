@@ -60,12 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidConnectivity.cs" />
+    <Compile Include="LibraryScanning.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\surtr.AndroidCtrlTestModule\surtr.AndroidCtrlTestModule.csproj">
+      <Project>{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}</Project>
+      <Name>surtr.AndroidCtrlTestModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

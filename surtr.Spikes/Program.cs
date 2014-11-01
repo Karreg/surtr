@@ -7,12 +7,22 @@ namespace surtr.Spikes
     {
         public static void Main(string[] args)
         {
-            AndroidConnectivity connectivity;
+            // TestAndroidConnectivity();
+            TestLibraryScanning();
+        }
 
+        private static void TestLibraryScanning()
+        {
+            var libraryScanning = new LibraryScanning();
+            libraryScanning.ScanAndSave();
+        }
+
+        private static void TestAndroidConnectivity()
+        {
             var worker = new BackgroundWorker();
             worker.DoWork += (sender, eventArgs) =>
             {
-                connectivity = new AndroidConnectivity();
+                var connectivity = new AndroidConnectivity();
                 connectivity.Connect();
                 connectivity.Start();
             };

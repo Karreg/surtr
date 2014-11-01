@@ -16,5 +16,7 @@ namespace surtr.AndroidCtrlTestModule.Services
         public string Path { get; private set; }
 
         public bool Favorite { get; set; }
+
+        public DateTime AddDate { get; set; }
     }
 }
