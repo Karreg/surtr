@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr", "surtr\surtr.csproj", "{9E11FABD-E9D8-439C-9532-B9F7C6F03A19}"
 EndProject
@@ -19,6 +19,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.AndroidCtrlTestModule", "surtr.AndroidCtrlTestModule\surtr.AndroidCtrlTestModule.csproj", "{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.Shared", "surtr.Shared\surtr.Shared.csproj", "{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.LibraryManagement", "surtr.LibraryManagement\surtr.LibraryManagement.csproj", "{397790DB-801B-4EC8-964A-27BB8F1D943F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.MainModule", "surtr.MainModule\surtr.MainModule.csproj", "{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +50,14 @@ Global
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397790DB-801B-4EC8-964A-27BB8F1D943F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397790DB-801B-4EC8-964A-27BB8F1D943F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397790DB-801B-4EC8-964A-27BB8F1D943F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397790DB-801B-4EC8-964A-27BB8F1D943F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
