@@ -30,7 +30,7 @@ namespace surtr
         {
             base.ConfigureModuleCatalog();
             var moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
-            moduleCatalog.AddModule(typeof(AndroidCtrlTestModule.AndroidCtrlTestModule));
+            moduleCatalog.AddModule(typeof(MainModule.MainModule));
         }
 
         protected override void ConfigureContainer()

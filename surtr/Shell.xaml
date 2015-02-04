@@ -4,7 +4,6 @@
         xmlns:prism="http://www.codeplex.com/prism"
         Title="surtr" Height="600" Width="800" Icon="icon.ico">
     <StackPanel>
-        <ItemsControl Name="DeviceMonitorRegion" prism:RegionManager.RegionName="DeviceMonitorRegion"/>
-        <ItemsControl Name="DeviceConfigurationRegion" prism:RegionManager.RegionName="DeviceConfigurationRegion"/>
+        <ItemsControl Name="LibraryRegion" prism:RegionManager.RegionName="LibraryRegion"/>
     </StackPanel>
 </Window>

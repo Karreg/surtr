@@ -154,9 +154,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\surtr.AndroidCtrlTestModule\surtr.AndroidCtrlTestModule.csproj">
-      <Project>{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}</Project>
-      <Name>surtr.AndroidCtrlTestModule</Name>
+    <ProjectReference Include="..\surtr.MainModule\surtr.MainModule.csproj">
+      <Project>{c4b32bfe-04b7-4e0c-beb3-4de34bb4860d}</Project>
+      <Name>surtr.MainModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\surtr.Shared\surtr.Shared.csproj">
       <Project>{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}</Project>

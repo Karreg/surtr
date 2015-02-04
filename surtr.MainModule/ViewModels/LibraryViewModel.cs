@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace surtr.MainModule
+namespace surtr.MainModule.ViewModels
 {
-    public class Class1
+    public class LibraryViewModel
     {
     }
 }

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr", "surtr\surtr.csproj", "{9E11FABD-E9D8-439C-9532-B9F7C6F03A19}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D} = {C4B32BFE-04B7-4E0C-BEB3-4DE34BB4860D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.UnitTests", "surtr.UnitTests\surtr.UnitTests.csproj", "{35CCFEFB-3808-458A-94CD-23745DE9EE3D}"
 EndProject
