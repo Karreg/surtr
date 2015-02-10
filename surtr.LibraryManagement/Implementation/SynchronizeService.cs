@@ -1,9 +1,10 @@
-namespace surtr.LibraryManagement.Interface
+namespace surtr.LibraryManagement.Implementation
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using Interface;
 
     public class SynchronizeService : ISynchronizeService
     {
@@ -21,7 +22,7 @@ namespace surtr.LibraryManagement.Interface
             var remoteFile = Path.Combine(remoteFolder, "sync.sur");
             if (File.Exists(remoteFile))
             {
-                var remoteLibrary = storeService.Load(remoteFile);
+                var remoteLibrary = this.storeService.Load(remoteFile);
                 this.Synchronize(library, remoteLibrary, options);
             }
         }

@@ -9,7 +9,8 @@
         /// Stores the library in a file
         /// </summary>
         /// <param name="library"></param>
-        void Store(ILibrary library);
+        /// <param name="filename"></param>
+        void Store(ILibrary library, string filename);
 
         /// <summary>
         /// Loads a library from a file, synchronously.

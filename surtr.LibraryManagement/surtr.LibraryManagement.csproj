@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\ScanService.cs" />
+    <Compile Include="Implementation\StoreService.cs" />
     <Compile Include="Interface\ILibrary.cs" />
     <Compile Include="Interface\ILibraryItem.cs" />
     <Compile Include="Interface\IScanService.cs" />
@@ -64,16 +66,14 @@
     <Compile Include="Interface\LibraryItem.cs" />
     <Compile Include="Interface\SyncAction.cs" />
     <Compile Include="Interface\SynchronizationOptions.cs" />
-    <Compile Include="Interface\SynchronizeService.cs" />
+    <Compile Include="Implementation\SynchronizeService.cs" />
     <Compile Include="Interface\SyncItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
