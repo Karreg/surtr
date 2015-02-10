@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace surtr.MainModule
+﻿namespace surtr.MainModule
 {
     using Common.Logging;
+    using LibraryManagement.Interface;
     using Microsoft.Practices.Prism.Modularity;
     using Microsoft.Practices.Prism.Regions;
     using Microsoft.Practices.Unity;
@@ -43,6 +38,9 @@ namespace surtr.MainModule
             this.unityContainer.RegisterInstance<ILog>(logger);
 
             logger.InfoFormat("Starting surtr...");
+            this.unityContainer.RegisterType<IStoreService, StoreService>(ContainerLifeTimeManager);
+            this.unityContainer.RegisterType<IScanService, ScanService>(ContainerLifeTimeManager);
+            this.unityContainer.RegisterType<ISynchronizeService, SynchronizeService>(ContainerLifeTimeManager);
 
             //this.unityContainer.RegisterInstance(new UnitOfExecutionsFactory(), this.ContainerControlledLifetimeManager);
 
@@ -53,6 +51,11 @@ namespace surtr.MainModule
             //this.unityContainer.Resolve<IDeviceMonitor>().Start();
 
             //this.unityContainer.RegisterType<IFileTreeService, FileTreeService>(this.ContainerControlledLifetimeManager);
+        }
+
+        public ContainerControlledLifetimeManager ContainerLifeTimeManager
+        {
+            get { return new ContainerControlledLifetimeManager(); }
         }
     }
 }

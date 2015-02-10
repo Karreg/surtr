@@ -6,7 +6,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <Label>Test</Label>
-        <Button>Yo</Button>
+        <Expander Header="Configuration"  IsExpanded="False">
+            <StackPanel>
+            <GroupBox Header="Library folder">
+                <Label Content="{Binding LibraryFolder}"></Label>
+            </GroupBox>
+                <Button Command="{Binding LoadCommand}">Load</Button>
+            </StackPanel>
+        </Expander>
+        <Expander Header="Library">
+            <ScrollViewer>
+                <DataGrid></DataGrid>
+            </ScrollViewer>
+        </Expander>
+        <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
     </StackPanel>
 </UserControl>
