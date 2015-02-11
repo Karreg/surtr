@@ -27,7 +27,13 @@
                 var files = Directory.EnumerateFiles(directory);
                 foreach (var file in files)
                 {
-                    var item = new LibraryItem(directory.Replace(rootDirectory, string.Empty), file);
+                    var libraryPath = directory.Replace(rootDirectory, string.Empty);
+                    if (libraryPath.StartsWith(string.Empty + Path.DirectorySeparatorChar))
+                    {
+                        libraryPath = libraryPath.Substring(1);
+                    }
+
+                    var item = new LibraryItem(rootDirectory, libraryPath, file);
                     items.Add(item);
                 }
 

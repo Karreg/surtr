@@ -11,7 +11,7 @@
 
             foreach (var libraryItem in library.Items)
             {
-                output.WriteLine("{0};{1};{2}", libraryItem.LibraryPath, libraryItem.Name, libraryItem.Favorite);
+                output.WriteLine("{0};{1};{2}", libraryItem.LibraryPath, libraryItem.Filename, libraryItem.Favorite);
             }
 
             output.Close();
@@ -29,7 +29,7 @@
                 var values = line.Split(';');
                 if (values.Length == 3)
                 {
-                    var item = new LibraryItem(Path.Combine(rootDirectory, values[0]), values[1]);
+                    var item = new LibraryItem(rootDirectory, values[0], values[1]);
                     item.Favorite = bool.Parse(values[2]);
                     library.AddItem(item);
                 }

@@ -46,6 +46,8 @@
 
         private void Load()
         {
+            this.LibraryItems.Clear();
+
             var libraryFile = Path.Combine(this.LibraryFolder, "library.sur");
             if (File.Exists(libraryFile))
             {

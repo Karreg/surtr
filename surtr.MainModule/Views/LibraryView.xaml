@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <Expander Header="Configuration"  IsExpanded="False">
+        <Expander Header="Configuration"  IsExpanded="True">
             <StackPanel>
             <GroupBox Header="Library folder">
                 <Label Content="{Binding LibraryFolder}"></Label>
@@ -14,7 +14,7 @@
                 <Button Command="{Binding LoadCommand}">Load</Button>
             </StackPanel>
         </Expander>
-        <Expander Header="Library">
+        <Expander Header="Library" IsExpanded="True">
             <ScrollViewer>
                 <DataGrid ItemsSource="{Binding LibraryItems}"></DataGrid>
             </ScrollViewer>

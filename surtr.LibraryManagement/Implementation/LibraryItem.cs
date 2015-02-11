@@ -11,9 +11,10 @@ namespace surtr.LibraryManagement.Implementation
     {
         private readonly string fullPathFilename;
 
-        public LibraryItem(string libraryPath, string filename)
+        public LibraryItem(string rootPath, string libraryPath, string filename)
         {
-            this.fullPathFilename = System.IO.Path.GetFullPath(filename);
+            this.fullPathFilename = System.IO.Path.Combine(rootPath, libraryPath);
+            this.fullPathFilename = System.IO.Path.Combine(fullPathFilename, filename);
             this.Path = System.IO.Path.GetDirectoryName(this.fullPathFilename);
             this.Filename = System.IO.Path.GetFileName(this.fullPathFilename);
             this.Name = System.IO.Path.GetFileNameWithoutExtension(this.fullPathFilename);
