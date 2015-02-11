@@ -63,11 +63,13 @@
     <Compile Include="Interface\IStoreService.cs" />
     <Compile Include="Interface\ISynchronizeService.cs" />
     <Compile Include="Interface\ISyncItem.cs" />
-    <Compile Include="Interface\LibraryItem.cs" />
+    <Compile Include="Implementation\Library.cs" />
+    <Compile Include="Implementation\LibraryItem.cs" />
     <Compile Include="Interface\SyncAction.cs" />
     <Compile Include="Interface\SynchronizationOptions.cs" />
     <Compile Include="Implementation\SynchronizeService.cs" />
     <Compile Include="Interface\SyncItem.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

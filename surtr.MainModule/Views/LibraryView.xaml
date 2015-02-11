@@ -16,7 +16,7 @@
         </Expander>
         <Expander Header="Library">
             <ScrollViewer>
-                <DataGrid></DataGrid>
+                <DataGrid ItemsSource="{Binding LibraryItems}"></DataGrid>
             </ScrollViewer>
         </Expander>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>

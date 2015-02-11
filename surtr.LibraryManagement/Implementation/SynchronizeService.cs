@@ -30,7 +30,7 @@ namespace surtr.LibraryManagement.Implementation
         public void Synchronize(ILibrary library, ILibrary remoteLibrary, SynchronizationOptions options)
         {
             var syncItems = new Dictionary<string, ISyncItem>();
-            foreach (var libraryItem in library.Items.ToList())
+            foreach (var libraryItem in library.Items.Where(i => i.Favorite).ToList())
             {
                 if (libraryItem.Exists)
                 {
@@ -58,7 +58,10 @@ namespace surtr.LibraryManagement.Implementation
             foreach (var syncItem in syncItems.Values)
             {
                 this.SetSyncAction(syncItem, options);
-                this.NewSyncItem(syncItem);
+                if (this.NewSyncItem != null)
+                {
+                    this.NewSyncItem(syncItem);
+                }
             }
         }
 

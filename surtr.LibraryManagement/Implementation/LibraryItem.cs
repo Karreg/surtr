@@ -1,9 +1,13 @@
-namespace surtr.LibraryManagement.Interface
+namespace surtr.LibraryManagement.Implementation
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
+    using System.Runtime.CompilerServices;
+    using Annotations;
+    using Interface;
 
-    public class LibraryItem : ILibraryItem
+    public class LibraryItem : ILibraryItem, INotifyPropertyChanged
     {
         private readonly string fullPathFilename;
 
@@ -16,11 +20,12 @@ namespace surtr.LibraryManagement.Interface
             this.LibraryPath = libraryPath;
         }
 
+        public bool Favorite { get; set; }
+        public string LibraryPath { get; private set; }
+        public string Name { get; private set; }
         public string Path { get; private set; }
         public string Filename { get; private set; }
-        public string Name { get; private set; }
-        public string LibraryPath { get; private set; }
-
+        
         public DateTime LastModificationDate
         {
             get { return File.GetLastWriteTime(this.fullPathFilename); }
@@ -28,7 +33,14 @@ namespace surtr.LibraryManagement.Interface
         public DateTime CreationDate {
             get { return File.GetCreationTime(this.fullPathFilename); }
         }
-        public bool Favorite { get; set; }
         public bool Exists { get { return File.Exists(this.fullPathFilename); } }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
