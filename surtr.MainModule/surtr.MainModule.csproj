@@ -33,6 +33,12 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Michonne.Implementation">
+      <HintPath>..\lib\Michonne.Implementation.dll</HintPath>
+    </Reference>
+    <Reference Include="Michonne.Interfaces">
+      <HintPath>..\lib\Michonne.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
       <HintPath>..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
     </Reference>

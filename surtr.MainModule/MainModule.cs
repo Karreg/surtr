@@ -3,6 +3,7 @@
     using Common.Logging;
     using LibraryManagement.Implementation;
     using LibraryManagement.Interface;
+    using Michonne.Implementation;
     using Microsoft.Practices.Prism.Modularity;
     using Microsoft.Practices.Prism.Regions;
     using Microsoft.Practices.Unity;
@@ -43,15 +44,10 @@
             this.unityContainer.RegisterType<IScanService, ScanService>(ContainerLifeTimeManager);
             this.unityContainer.RegisterType<ISynchronizeService, SynchronizeService>(ContainerLifeTimeManager);
 
-            //this.unityContainer.RegisterInstance(new UnitOfExecutionsFactory(), this.ContainerControlledLifetimeManager);
+            this.unityContainer.RegisterInstance(new UnitOfExecutionsFactory(), ContainerLifeTimeManager);
 
-            //var rootDispatcher = this.unityContainer.Resolve<UnitOfExecutionsFactory>().GetDedicatedThread();
-            //this.unityContainer.RegisterInstance(rootDispatcher);
-
-            //this.unityContainer.RegisterType<IDeviceMonitor, DeviceMonitor>(this.ContainerControlledLifetimeManager);
-            //this.unityContainer.Resolve<IDeviceMonitor>().Start();
-
-            //this.unityContainer.RegisterType<IFileTreeService, FileTreeService>(this.ContainerControlledLifetimeManager);
+            var rootDispatcher = this.unityContainer.Resolve<UnitOfExecutionsFactory>().GetDedicatedThread();
+            this.unityContainer.RegisterInstance(rootDispatcher);
         }
 
         public ContainerControlledLifetimeManager ContainerLifeTimeManager

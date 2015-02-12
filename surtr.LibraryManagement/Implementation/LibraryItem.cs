@@ -9,32 +9,44 @@ namespace surtr.LibraryManagement.Implementation
 
     public class LibraryItem : ILibraryItem, INotifyPropertyChanged
     {
-        private readonly string fullPathFilename;
+        private bool favorite;
 
         public LibraryItem(string rootPath, string libraryPath, string filename)
         {
-            this.fullPathFilename = System.IO.Path.Combine(rootPath, libraryPath);
-            this.fullPathFilename = System.IO.Path.Combine(fullPathFilename, filename);
-            this.Path = System.IO.Path.GetDirectoryName(this.fullPathFilename);
-            this.Filename = System.IO.Path.GetFileName(this.fullPathFilename);
-            this.Name = System.IO.Path.GetFileNameWithoutExtension(this.fullPathFilename);
+            this.FullPathFilename = System.IO.Path.Combine(rootPath, libraryPath, filename);
+            this.Path = System.IO.Path.GetDirectoryName(this.FullPathFilename);
+            this.Filename = System.IO.Path.GetFileName(this.FullPathFilename);
+            this.Name = System.IO.Path.Combine(libraryPath, filename);
             this.LibraryPath = libraryPath;
+            this.AddDate = DateTime.Now;
         }
 
-        public bool Favorite { get; set; }
-        public string LibraryPath { get; private set; }
+        public bool Favorite
+        {
+            get { return this.favorite; }
+            set
+            {
+                this.favorite = value;
+                this.OnPropertyChanged("Favorite");
+            }
+        }
+
         public string Name { get; private set; }
+        public DateTime AddDate { get; set; }
+        public string LibraryPath { get; private set; }
         public string Path { get; private set; }
         public string Filename { get; private set; }
+        public string FullPathFilename { get; private set; }
         
         public DateTime LastModificationDate
         {
-            get { return File.GetLastWriteTime(this.fullPathFilename); }
+            get { return File.GetLastWriteTime(this.FullPathFilename); }
         }
         public DateTime CreationDate {
-            get { return File.GetCreationTime(this.fullPathFilename); }
+            get { return File.GetCreationTime(this.FullPathFilename); }
         }
-        public bool Exists { get { return File.Exists(this.fullPathFilename); } }
+
+        public bool Exists { get { return File.Exists(this.FullPathFilename); } }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

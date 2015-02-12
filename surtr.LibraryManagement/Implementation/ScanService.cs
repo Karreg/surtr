@@ -33,7 +33,7 @@
                         libraryPath = libraryPath.Substring(1);
                     }
 
-                    var item = new LibraryItem(rootDirectory, libraryPath, file);
+                    var item = new LibraryItem(rootDirectory, libraryPath, Path.GetFileName(file));
                     items.Add(item);
                 }
 

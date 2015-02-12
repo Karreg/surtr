@@ -14,14 +14,19 @@
         bool Favorite { get; set; }
 
         /// <summary>
-        /// Gets the library path. i.e. the relative path to the library folder.
-        /// </summary>
-        string LibraryPath { get; }
-
-        /// <summary>
         /// Item name (i.e. filename without extension)
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Add date
+        /// </summary>
+        DateTime AddDate { get; }
+
+        /// <summary>
+        /// Gets the library path. i.e. the relative path to the library folder.
+        /// </summary>
+        string LibraryPath { get; }
 
         /// <summary>
         /// Full path of the item, without the filename
@@ -32,6 +37,11 @@
         /// Filename, with extension.
         /// </summary>
         string Filename { get; }
+
+        /// <summary>
+        /// Full path filename, with extension.
+        /// </summary>
+        string FullPathFilename { get; }
 
         /// <summary>
         /// Last modification date

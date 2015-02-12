@@ -37,13 +37,13 @@
         /// <summary>
         /// Removes the library item from the library
         /// </summary>
-        /// <param name="libraryItem"></param>
-        void RemoveItem(ILibraryItem libraryItem);
+        /// <param name="libraryItemName"></param>
+        void RemoveItem(string libraryItemName);
 
         /// <summary>
         /// Deletes the library item. Physically I mean.
         /// </summary>
-        /// <param name="libraryItem"></param>
-        void DeleteItem(ILibraryItem libraryItem);
+        /// <param name="libraryItemName"></param>
+        void DeleteItem(string libraryItemName);
     }
 }

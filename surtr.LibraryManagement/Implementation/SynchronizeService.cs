@@ -34,12 +34,12 @@ namespace surtr.LibraryManagement.Implementation
             {
                 if (libraryItem.Exists)
                 {
-                    var syncItem = new SyncItem {Item = libraryItem};
+                    var syncItem = new SyncItem { Item = libraryItem, Name = libraryItem.Name };
                     syncItems.Add(libraryItem.Name, syncItem);
                 }
                 else
                 {
-                    library.RemoveItem(libraryItem);
+                    library.RemoveItem(libraryItem.Name);
                 }
             }
 
@@ -48,7 +48,7 @@ namespace surtr.LibraryManagement.Implementation
                 ISyncItem syncItem;
                 if (!syncItems.TryGetValue(remoteItem.Name, out syncItem))
                 {
-                    syncItem = new SyncItem();
+                    syncItem = new SyncItem { Name = remoteItem.Name };
                     syncItems.Add(remoteItem.Name, syncItem);
                 }
 

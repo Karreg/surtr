@@ -45,22 +45,25 @@
             }
         }
 
-        public void RemoveItem(ILibraryItem libraryItem)
+        public void RemoveItem(string libraryItemName)
         {
-            if (this.items.ContainsKey(libraryItem.Name))
+            if (this.items.ContainsKey(libraryItemName))
             {
-                this.items.Remove(libraryItem.Name);
+                this.items.Remove(libraryItemName);
             }
         }
 
-        public void DeleteItem(ILibraryItem libraryItem)
+        public void DeleteItem(string libraryItemName)
         {
-            // TODO Check if Path is the correct property to use
-            this.RemoveItem(libraryItem);
-            if (File.Exists(libraryItem.Path))
+            ILibraryItem item;
+            if (this.items.TryGetValue(libraryItemName, out item))
             {
-                File.Delete(libraryItem.Path);
+                if (File.Exists(item.FullPathFilename))
+                {
+                    File.Delete(item.FullPathFilename);
+                }
             }
+            this.RemoveItem(libraryItemName);
         }
     }
 }

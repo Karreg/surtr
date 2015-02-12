@@ -46,10 +46,12 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Michonne.Implementation">
+    <Reference Include="Michonne.Implementation, Version=0.1.0.39053, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Michonne.Implementation.dll</HintPath>
     </Reference>
-    <Reference Include="Michonne.Interfaces">
+    <Reference Include="Michonne.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Michonne.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Composition">
