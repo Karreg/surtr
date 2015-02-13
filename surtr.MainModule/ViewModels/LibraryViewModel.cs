@@ -1,11 +1,16 @@
 ﻿namespace surtr.MainModule.ViewModels
 {
+    using System;
     using System.Collections;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.IO;
+    using System.Net.Mime;
     using System.Runtime.CompilerServices;
+    using System.Security.AccessControl;
+    using System.Windows;
     using System.Windows.Input;
+    using Common.Logging.Configuration;
     using LibraryManagement.Annotations;
     using LibraryManagement.Implementation;
     using LibraryManagement.Interface;
@@ -31,6 +36,7 @@
             ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
         {
             this.scanService = scanService;
+            this.scanService.CurrentDirectory += this.OnCurrentDirectory;
             this.storeService = storeService;
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
@@ -110,26 +116,32 @@
         {
             this.LibraryItems.Clear();
 
-            this.libraryFile = Path.Combine(this.LibraryFolder, "library.sur");
-            if (File.Exists(this.libraryFile))
+            this.rootDispatcher.Dispatch(()
+                =>
             {
-                this.Library = this.storeService.Load(this.libraryFile);
-            }
-            else
-            {
-                this.Library = this.scanService.ScanLibrary(this.LibraryFolder);
-                this.storeService.Store(this.Library, this.libraryFile);
-            }
-
-            foreach (var libraryItem in this.Library.Items)
-            {
-                libraryItem.PropertyChanged += this.OnLibraryItemSelected;
-                if (libraryItem.Favorite)
+                this.libraryFile = Path.Combine(this.LibraryFolder, "library.sur");
+                if (File.Exists(this.libraryFile))
                 {
-                    this.CurrentSize += libraryItem.Size;
+                    this.Library = this.storeService.Load(this.libraryFile);
                 }
-                this.LibraryItems.Add(libraryItem);
-            }
+                else
+                {
+                    this.Library = this.scanService.ScanLibrary(this.LibraryFolder);
+                    this.storeService.Store(this.Library, this.libraryFile);
+                }
+
+                foreach (var libraryItem in this.Library.Items)
+                {
+                    libraryItem.PropertyChanged += this.OnLibraryItemSelected;
+                    if (libraryItem.Favorite)
+                    {
+                        this.CurrentSize += libraryItem.Size;
+                    }
+
+                    ILibraryItem item = libraryItem;
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() => this.LibraryItems.Add(item)));
+                }
+            });
         }
 
         private void OnLibraryItemSelected(object sender, PropertyChangedEventArgs e)
@@ -200,6 +212,11 @@
         private void OnNewSyncItem(ISyncItem syncItem)
         {
             this.SyncItems.Add(syncItem);
+        }
+
+        private void OnCurrentDirectory(string directory)
+        {
+            this.Status = directory;
         }
 
         public ObservableCollection<ISyncItem> SyncItems { get; set; }

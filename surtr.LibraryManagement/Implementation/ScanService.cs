@@ -1,5 +1,6 @@
 ﻿namespace surtr.LibraryManagement.Implementation
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
@@ -21,6 +22,11 @@
 
         private IEnumerable<ILibraryItem> ScanFolder(string rootDirectory, string directory)
         {
+            if (this.CurrentDirectory != null)
+            {
+                this.CurrentDirectory(directory);
+            }
+
             var items = new List<ILibraryItem>();
             if (Directory.Exists(directory))
             {
@@ -56,15 +62,17 @@
             throw new System.NotImplementedException();
         }
 
+        public event Action<string> CurrentDirectory;
+
         private bool IsBd(string filename)
         {
             var extension = Path.GetExtension(filename).ToLowerInvariant();
             return
-                extension.Equals("cbz") ||
-                extension.Equals("cbr") ||
-                extension.Equals("zip") ||
-                extension.Equals("rar") ||
-                extension.Equals("pdf");
+                extension.Equals(".cbz") ||
+                extension.Equals(".cbr") ||
+                extension.Equals(".zip") ||
+                extension.Equals(".rar") ||
+                extension.Equals(".pdf");
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace surtr.LibraryManagement.Interface
 {
+    using System;
+    using Common.Logging.Configuration;
+
     /// <summary>
     /// Interface for scan service
     /// </summary>
@@ -17,5 +20,10 @@
         /// </summary>
         /// <param name="library"></param>
         void UpdateLibrary(ILibrary library);
+
+        /// <summary>
+        /// Event to give progress
+        /// </summary>
+        event Action<string> CurrentDirectory;
     }
 }
