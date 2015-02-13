@@ -9,3 +9,5 @@ surtr.Spikes/bin
 **/bin
 **/*.suo
 **/*.Cache
+/package/*.log.*
+/package/*.log
