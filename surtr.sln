@@ -10,16 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr", "surtr\surtr.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.UnitTests", "surtr.UnitTests\surtr.UnitTests.csproj", "{35CCFEFB-3808-458A-94CD-23745DE9EE3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.Spikes", "surtr.Spikes\surtr.Spikes.csproj", "{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{51C2C5D2-8388-4CC8-AE19-7472B692FC4A}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.AndroidCtrlTestModule", "surtr.AndroidCtrlTestModule\surtr.AndroidCtrlTestModule.csproj", "{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "surtr.Shared", "surtr.Shared\surtr.Shared.csproj", "{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}"
 EndProject
@@ -41,14 +37,6 @@ Global
 		{35CCFEFB-3808-458A-94CD-23745DE9EE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35CCFEFB-3808-458A-94CD-23745DE9EE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35CCFEFB-3808-458A-94CD-23745DE9EE3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FC46F68-5423-4CD0-9B8D-13FC971DA0A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}.Release|Any CPU.ActiveCfg = Release|Any CPU

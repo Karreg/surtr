@@ -162,10 +162,6 @@
       <Project>{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}</Project>
       <Name>surtr.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\surtr.Spikes\surtr.Spikes.csproj">
-      <Project>{CFC1ED5F-B0F0-4EE3-9D78-EFF786832768}</Project>
-      <Name>surtr.Spikes</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
