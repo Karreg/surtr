@@ -8,14 +8,17 @@
     {
         public void Store(ILibrary library, string filename)
         {
-            var output = new StreamWriter(filename);
-
-            foreach (var libraryItem in library.Items)
+            if (Directory.Exists(Path.GetDirectoryName(filename)))
             {
-                output.WriteLine("{0};{1};{2};{3}", libraryItem.LibraryPath, libraryItem.Filename, libraryItem.Favorite, libraryItem.AddDate);
-            }
+                var output = new StreamWriter(filename);
 
-            output.Close();
+                foreach (var libraryItem in library.Items)
+                {
+                    output.WriteLine("{0};{1};{2};{3}", libraryItem.LibraryPath, libraryItem.Filename, libraryItem.Favorite, libraryItem.AddDate);
+                }
+
+                output.Close();
+            }
         }
 
         public ILibrary Load(string filename)

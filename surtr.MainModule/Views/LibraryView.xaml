@@ -21,10 +21,10 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock>Local library: </TextBlock>
-                        <TextBlock Text="{Binding LibraryFolder}" Grid.Row="0" Grid.Column="1"></TextBlock>
-                        <TextBlock Grid.Row="1">Remote library:</TextBlock>
-                        <TextBlock Text="{Binding RemoteLibraryFolder}" Grid.Row="1" Grid.Column="1"></TextBlock>
-                        <TextBlock Grid.Row="2">Max Size:</TextBlock>
+                        <TextBox Text="{Binding LibraryFolder}" Grid.Row="0" Grid.Column="1"></TextBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0">Remote library:</TextBlock>
+                        <TextBox Text="{Binding RemoteLibraryFolder}" Grid.Row="1" Grid.Column="1"></TextBox>
+                        <TextBlock Grid.Row="2" Grid.Column="0">Max Size:</TextBlock>
                         <TextBox Text="{Binding MaxSize}" Grid.Row="2" Grid.Column="1"></TextBox>
                     </Grid>
                     

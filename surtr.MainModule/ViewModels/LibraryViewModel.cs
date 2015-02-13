@@ -23,8 +23,12 @@
         private readonly IUnitOfExecution rootDispatcher;
         private string status = string.Empty;
         private double currentSize;
+        private string libraryFolder;
+        private string remoteLibraryFolder;
+        private string maxSize;
 
-        public LibraryViewModel(IScanService scanService, IStoreService storeService, ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
+        public LibraryViewModel(IScanService scanService, IStoreService storeService,
+            ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
         {
             this.scanService = scanService;
             this.storeService = storeService;
@@ -46,23 +50,38 @@
             this.MaxSize = "40";
         }
 
-        public string LibraryFolder { get; set; }
+        public string LibraryFolder {
+            get { return this.libraryFolder; }
+            set
+            {
+                this.libraryFolder = value;
+                this.OnPropertyChanged("LibraryFolder");
+            }
+        }
 
         public ILibrary Library { get; set; }
 
         public ObservableCollection<ILibraryItem> LibraryItems { get; private set; }
 
-        public ObservableCollection<ILibraryItem> SelectedLibraryItems { get; set; } 
+        public ObservableCollection<ILibraryItem> SelectedLibraryItems { get; set; }
 
         public ICommand LoadCommand { get; private set; }
 
         public ICommand SetFavoriteCommand { get; private set; }
-        
+
         public ICommand SynchronizeCommand { get; private set; }
 
         public ICommand ExecuteCommand { get; private set; }
 
-        public string RemoteLibraryFolder { get; set; }
+        public string RemoteLibraryFolder
+        {
+            get { return this.remoteLibraryFolder; }
+            set
+            {
+                this.remoteLibraryFolder = value;
+                this.OnPropertyChanged("RemoteLibraryFolder");
+            }
+        }
 
         public ILibrary RemoteLibrary { get; set; }
 
@@ -144,7 +163,15 @@
             get { return string.Format("{0:0.00}", this.CurrentSize/1024); }
         }
 
-        public string MaxSize { get; set; }
+        public string MaxSize
+        {
+            get { return this.maxSize; }
+            set
+            {
+                this.maxSize = value;
+                this.OnPropertyChanged("MaxSize");
+            }
+        }
 
         private void Synchronize()
         {
