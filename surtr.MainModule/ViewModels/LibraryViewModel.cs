@@ -23,7 +23,6 @@
         private readonly IUnitOfExecution rootDispatcher;
         private string status = string.Empty;
         private double currentSize;
-        private long byteSize;
 
         public LibraryViewModel(IScanService scanService, IStoreService storeService, ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
         {
@@ -43,6 +42,8 @@
             this.SelectedLibraryItems = new ObservableCollection<ILibraryItem>();
             this.SyncItems = new ObservableCollection<ISyncItem>();
             this.ExecuteCommand = new DelegateCommand(this.Execute);
+
+            this.MaxSize = "40";
         }
 
         public string LibraryFolder { get; set; }
@@ -142,6 +143,8 @@
         {
             get { return string.Format("{0:0.00}", this.CurrentSize/1024); }
         }
+
+        public string MaxSize { get; set; }
 
         private void Synchronize()
         {

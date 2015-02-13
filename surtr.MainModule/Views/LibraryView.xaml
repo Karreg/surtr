@@ -9,8 +9,25 @@
     <StackPanel>
         <Expander Header="Configuration"  IsExpanded="True">
             <StackPanel>
-                <GroupBox Header="Library folder">
-                    <Label Content="{Binding LibraryFolder}"></Label>
+                <GroupBox Header="Configuration">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock>Local library: </TextBlock>
+                        <TextBlock Text="{Binding LibraryFolder}" Grid.Row="0" Grid.Column="1"></TextBlock>
+                        <TextBlock Grid.Row="1">Remote library:</TextBlock>
+                        <TextBlock Text="{Binding RemoteLibraryFolder}" Grid.Row="1" Grid.Column="1"></TextBlock>
+                        <TextBlock Grid.Row="2">Max Size:</TextBlock>
+                        <TextBox Text="{Binding MaxSize}" Grid.Row="2" Grid.Column="1"></TextBox>
+                    </Grid>
+                    
                 </GroupBox>
                 <Button Command="{Binding LoadCommand}">Load</Button>
             </StackPanel>
