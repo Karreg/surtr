@@ -7,7 +7,7 @@ namespace surtr.LibraryManagement.Implementation
     using Annotations;
     using Interface;
 
-    public class LibraryItem : ILibraryItem, INotifyPropertyChanged
+    public class LibraryItem : ILibraryItem
     {
         private bool favorite;
 
@@ -19,6 +19,10 @@ namespace surtr.LibraryManagement.Implementation
             this.Name = System.IO.Path.Combine(libraryPath, filename);
             this.LibraryPath = libraryPath;
             this.AddDate = DateTime.Now;
+            if (this.Exists)
+            {
+                this.Size = ((double)new FileInfo(this.FullPathFilename).Length)/(1024*1024);
+            }
         }
 
         public bool Favorite
@@ -47,6 +51,12 @@ namespace surtr.LibraryManagement.Implementation
         }
 
         public bool Exists { get { return File.Exists(this.FullPathFilename); } }
+
+        public double Size
+        {
+            get ; private set;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

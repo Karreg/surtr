@@ -18,6 +18,13 @@
         <Expander Header="Library" IsExpanded="True">
             <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectionMode="Extended"></DataGrid>
         </Expander>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Current Size: "></TextBlock>
+            <TextBlock Text="{Binding DisplayCurrentSize}"></TextBlock>
+            <TextBlock Text=" / "/>
+            <TextBlock Text="{Binding MaxSize}"></TextBlock>
+            
+        </StackPanel>
         <Button Command="{Binding SetFavoriteCommand}">Favorite selection</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">

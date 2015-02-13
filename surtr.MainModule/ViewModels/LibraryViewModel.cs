@@ -22,6 +22,8 @@
         private string remoteLibraryFile;
         private readonly IUnitOfExecution rootDispatcher;
         private string status = string.Empty;
+        private double currentSize;
+        private long byteSize;
 
         public LibraryViewModel(IScanService scanService, IStoreService storeService, ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
         {
@@ -101,8 +103,44 @@
 
             foreach (var libraryItem in this.Library.Items)
             {
+                libraryItem.PropertyChanged += this.OnLibraryItemSelected;
+                if (libraryItem.Favorite)
+                {
+                    this.CurrentSize += libraryItem.Size;
+                }
                 this.LibraryItems.Add(libraryItem);
             }
+        }
+
+        private void OnLibraryItemSelected(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Favorite")
+            {
+                var item = (ILibraryItem) sender;
+                if (item.Favorite)
+                {
+                    this.CurrentSize += item.Size;
+                }
+                else
+                {
+                    this.CurrentSize -= item.Size;
+                }
+            }
+        }
+
+        public double CurrentSize {
+            get { return this.currentSize; }
+            set
+            {
+                this.currentSize = value;
+                this.OnPropertyChanged("CurrentSize");
+                this.OnPropertyChanged("DisplayCurrentSize");
+            }
+        }
+
+        public string DisplayCurrentSize
+        {
+            get { return string.Format("{0:0.00}", this.CurrentSize/1024); }
         }
 
         private void Synchronize()

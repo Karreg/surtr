@@ -1,12 +1,13 @@
 ﻿namespace surtr.LibraryManagement.Interface
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
 
     /// <summary>
     /// Interface for library items
     /// </summary>
-    public interface ILibraryItem
+    public interface ILibraryItem : INotifyPropertyChanged
     {
         /// <summary>
         /// Is the item a favorite ? (useful until playlist are handled)
@@ -57,5 +58,10 @@
         /// True if file exists. False either way.
         /// </summary>
         bool Exists { get; }
+
+        /// <summary>
+        /// Size in GB
+        /// </summary>
+        double Size { get; }
     }
 }
