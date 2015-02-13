@@ -32,11 +32,13 @@
             this.rootDispatcher = rootDispatcher;
             this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
             this.LoadCommand = new DelegateCommand(this.Load);
+            this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
 
             this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
+            this.SelectedLibraryItems = new ObservableCollection<ILibraryItem>();
             this.SyncItems = new ObservableCollection<ISyncItem>();
             this.ExecuteCommand = new DelegateCommand(this.Execute);
         }
@@ -45,10 +47,14 @@
 
         public ILibrary Library { get; set; }
 
-        public ObservableCollection<ILibraryItem> LibraryItems { get; private set; } 
+        public ObservableCollection<ILibraryItem> LibraryItems { get; private set; }
+
+        public ObservableCollection<ILibraryItem> SelectedLibraryItems { get; set; } 
 
         public ICommand LoadCommand { get; private set; }
 
+        public ICommand SetFavoriteCommand { get; private set; }
+        
         public ICommand SynchronizeCommand { get; private set; }
 
         public ICommand ExecuteCommand { get; private set; }
@@ -64,6 +70,17 @@
             {
                 this.status = value;
                 this.OnPropertyChanged("Status");
+            }
+        }
+
+        private void SetFavorite()
+        {
+            if (this.SelectedLibraryItems != null)
+            {
+                foreach (var item in this.SelectedLibraryItems)
+                {
+                    item.Favorite = !item.Favorite;
+                }
             }
         }
 

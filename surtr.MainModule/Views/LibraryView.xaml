@@ -4,30 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer>
-        <StackPanel>
-            <Expander Header="Configuration"  IsExpanded="True">
-                <StackPanel>
-                    <GroupBox Header="Library folder">
-                        <Label Content="{Binding LibraryFolder}"></Label>
-                    </GroupBox>
-                    <Button Command="{Binding LoadCommand}">Load</Button>
-                </StackPanel>
-            </Expander>
-            <Expander Header="Library" IsExpanded="True">
-                <ScrollViewer>
-                    <DataGrid ItemsSource="{Binding LibraryItems}"></DataGrid>
-                </ScrollViewer>
-            </Expander>
-            <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
-            <Expander Header="Synchronization" IsExpanded="True">
-                <ScrollViewer>
-                    <DataGrid ItemsSource="{Binding SyncItems}"></DataGrid>
-                </ScrollViewer>
-            </Expander>
-            <Button Command="{Binding ExecuteCommand}">Execute</Button>
-            <TextBlock Text="{Binding Status}"></TextBlock>
-        </StackPanel>
-    </ScrollViewer>
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:helpers="clr-namespace:surtr.MainModule.Views">
+    <StackPanel>
+        <Expander Header="Configuration"  IsExpanded="True">
+            <StackPanel>
+                <GroupBox Header="Library folder">
+                    <Label Content="{Binding LibraryFolder}"></Label>
+                </GroupBox>
+                <Button Command="{Binding LoadCommand}">Load</Button>
+            </StackPanel>
+        </Expander>
+        <Expander Header="Library" IsExpanded="True">
+            <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectionMode="Extended"></DataGrid>
+        </Expander>
+        <Button Command="{Binding SetFavoriteCommand}">Favorite selection</Button>
+        <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
+        <Expander Header="Synchronization" IsExpanded="True">
+            <DataGrid ItemsSource="{Binding SyncItems}"></DataGrid>
+        </Expander>
+        <Button Command="{Binding ExecuteCommand}">Execute</Button>
+        <TextBlock Text="{Binding Status}"></TextBlock>
+    </StackPanel>
 </UserControl>

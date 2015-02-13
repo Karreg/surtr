@@ -27,14 +27,17 @@
                 var files = Directory.EnumerateFiles(directory);
                 foreach (var file in files)
                 {
-                    var libraryPath = directory.Replace(rootDirectory, string.Empty);
-                    if (libraryPath.StartsWith(string.Empty + Path.DirectorySeparatorChar))
+                    if (this.IsBd(file))
                     {
-                        libraryPath = libraryPath.Substring(1);
-                    }
+                        var libraryPath = directory.Replace(rootDirectory, string.Empty);
+                        if (libraryPath.StartsWith(string.Empty + Path.DirectorySeparatorChar))
+                        {
+                            libraryPath = libraryPath.Substring(1);
+                        }
 
-                    var item = new LibraryItem(rootDirectory, libraryPath, Path.GetFileName(file));
-                    items.Add(item);
+                        var item = new LibraryItem(rootDirectory, libraryPath, Path.GetFileName(file));
+                        items.Add(item);
+                    }
                 }
 
                 var directories = Directory.EnumerateDirectories(directory);
@@ -51,6 +54,17 @@
         public void UpdateLibrary(ILibrary library)
         {
             throw new System.NotImplementedException();
+        }
+
+        private bool IsBd(string filename)
+        {
+            var extension = Path.GetExtension(filename).ToLowerInvariant();
+            return
+                extension.Equals("cbz") ||
+                extension.Equals("cbr") ||
+                extension.Equals("zip") ||
+                extension.Equals("rar") ||
+                extension.Equals("pdf");
         }
     }
 }

@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         Title="surtr" Height="600" Width="800" Icon="icon.ico" WindowState="Maximized">
-    <StackPanel>
-        <ItemsControl Name="LibraryRegion" prism:RegionManager.RegionName="LibraryRegion"/>
-    </StackPanel>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl Name="LibraryRegion" prism:RegionManager.RegionName="LibraryRegion"/>
+        </ScrollViewer>
+    </Grid>
 </Window>
