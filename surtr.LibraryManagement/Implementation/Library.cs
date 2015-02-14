@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Interface;
 
     public class Library : ILibrary
@@ -12,7 +13,7 @@
         public Library(string rootDirectory)
         {
             this.RootDirectory = rootDirectory;
-            this.items = new Dictionary<string, ILibraryItem>();
+            this.items = new SortedDictionary<string, ILibraryItem>();
         }
 
         public event Action<ILibraryItem> NewItem;

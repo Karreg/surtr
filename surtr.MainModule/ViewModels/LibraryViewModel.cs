@@ -41,11 +41,14 @@
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
             this.rootDispatcher = rootDispatcher;
-            this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
+            //this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
+            this.LibraryFolder = @"G:\eBooks\Library";
+            
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
 
-            this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
+            //this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
+            this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
@@ -118,30 +121,30 @@
 
             this.rootDispatcher.Dispatch(()
                 =>
-            {
-                this.libraryFile = Path.Combine(this.LibraryFolder, "library.sur");
-                if (File.Exists(this.libraryFile))
                 {
-                    this.Library = this.storeService.Load(this.libraryFile);
-                }
-                else
-                {
-                    this.Library = this.scanService.ScanLibrary(this.LibraryFolder);
-                    this.storeService.Store(this.Library, this.libraryFile);
-                }
-
-                foreach (var libraryItem in this.Library.Items)
-                {
-                    libraryItem.PropertyChanged += this.OnLibraryItemSelected;
-                    if (libraryItem.Favorite)
+                    this.libraryFile = Path.Combine(this.LibraryFolder, "library.sur");
+                    if (File.Exists(this.libraryFile))
                     {
-                        this.CurrentSize += libraryItem.Size;
+                        this.Library = this.storeService.Load(this.libraryFile);
+                    }
+                    else
+                    {
+                        this.Library = this.scanService.ScanLibrary(this.LibraryFolder);
+                        this.storeService.Store(this.Library, this.libraryFile);
                     }
 
-                    ILibraryItem item = libraryItem;
-                    Application.Current.Dispatcher.BeginInvoke((Action)(() => this.LibraryItems.Add(item)));
-                }
-            });
+                    foreach (var libraryItem in this.Library.Items)
+                    {
+                        libraryItem.PropertyChanged += this.OnLibraryItemSelected;
+                        if (libraryItem.Favorite)
+                        {
+                            this.CurrentSize += libraryItem.Size;
+                        }
+
+                        ILibraryItem item = libraryItem;
+                        Application.Current.Dispatcher.BeginInvoke((Action)(() => this.LibraryItems.Add(item)));
+                    }
+                });
         }
 
         private void OnLibraryItemSelected(object sender, PropertyChangedEventArgs e)

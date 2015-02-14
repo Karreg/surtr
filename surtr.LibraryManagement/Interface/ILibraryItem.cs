@@ -22,7 +22,7 @@
         /// <summary>
         /// Add date
         /// </summary>
-        DateTime AddDate { get; }
+        DateTime AddDate { get; set; }
 
         /// <summary>
         /// Gets the library path. i.e. the relative path to the library folder.

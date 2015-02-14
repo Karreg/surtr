@@ -2,10 +2,18 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using Interface;
 
     public class StoreService : IStoreService
     {
+        private readonly IScanService scanService;
+
+        public StoreService(IScanService scanService)
+        {
+            this.scanService = scanService;
+        }
+
         public void Store(ILibrary library, string filename)
         {
             if (Directory.Exists(Path.GetDirectoryName(filename)))
@@ -24,7 +32,9 @@
         public ILibrary Load(string filename)
         {
             var rootDirectory = Path.GetDirectoryName(filename);
-            var library = new Library(rootDirectory);
+
+            var library = this.scanService.ScanLibrary(rootDirectory);
+
             var input = File.OpenText(filename);
 
             string line;
@@ -33,10 +43,20 @@
                 var values = line.Split(';');
                 if (values.Length == 4)
                 {
+                    
                     var item = new LibraryItem(rootDirectory, values[0], values[1]);
-                    item.Favorite = bool.Parse(values[2]);
-                    item.AddDate = DateTime.Parse(values[3]);
-                    library.AddItem(item);
+                    var existingItem = library.Items.FirstOrDefault(i => i.Name.Equals(item.Name));
+                    if (existingItem != null)
+                    {
+                        existingItem.Favorite = bool.Parse(values[2]);
+                        existingItem.AddDate = DateTime.Parse(values[3]);
+                    }
+                    else
+                    {
+                        item.Favorite = bool.Parse(values[2]);
+                        item.AddDate = DateTime.Parse(values[3]);
+                        library.AddItem(item);
+                    }
                 }
             }
 
