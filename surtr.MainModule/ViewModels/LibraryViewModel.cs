@@ -188,30 +188,34 @@
         private void Synchronize()
         {
             this.SyncItems.Clear();
-            this.storeService.Store(this.Library, this.libraryFile);
 
-            this.remoteLibraryFile = Path.Combine(this.RemoteLibraryFolder, "library.sur");
-            if (File.Exists(this.remoteLibraryFile))
+            this.rootDispatcher.Dispatch(() =>
             {
-                this.RemoteLibrary = this.storeService.Load(this.remoteLibraryFile);
-            }
-            else
-            {
-                this.RemoteLibrary = this.scanService.ScanLibrary(this.RemoteLibraryFolder);
-                this.storeService.Store(this.RemoteLibrary, this.remoteLibraryFile);
-            }
+                this.storeService.Store(this.Library, this.libraryFile);
 
-            var options = new SynchronizationOptions();
-            options.LocalFileIsDeleted = SyncAction.DeleteFromRemote;
-            options.LocalFileIsUpdated = SyncAction.CopyToRemote;
-            options.RemoteFileIsDeleted = SyncAction.RemoveFromLocalLibrary;
-            options.RemoteFileIsUpdated = SyncAction.Nothing;
-            this.synchronizeService.Synchronize(this.Library, this.RemoteLibrary, options);
+                this.remoteLibraryFile = Path.Combine(this.RemoteLibraryFolder, "library.sur");
+                if (File.Exists(this.remoteLibraryFile))
+                {
+                    this.RemoteLibrary = this.storeService.Load(this.remoteLibraryFile);
+                }
+                else
+                {
+                    this.RemoteLibrary = this.scanService.ScanLibrary(this.RemoteLibraryFolder);
+                    this.storeService.Store(this.RemoteLibrary, this.remoteLibraryFile);
+                }
+
+                var options = new SynchronizationOptions();
+                options.LocalFileIsDeleted = SyncAction.DeleteFromRemote;
+                options.LocalFileIsUpdated = SyncAction.CopyToRemote;
+                options.RemoteFileIsDeleted = SyncAction.RemoveFromLocalLibrary;
+                options.RemoteFileIsUpdated = SyncAction.Nothing;
+                this.synchronizeService.Synchronize(this.Library, this.RemoteLibrary, options);
+            });
         }
 
         private void OnNewSyncItem(ISyncItem syncItem)
         {
-            this.SyncItems.Add(syncItem);
+            Application.Current.Dispatcher.BeginInvoke((Action)(() => this.SyncItems.Add(syncItem)));
         }
 
         private void OnCurrentDirectory(string directory)
@@ -273,7 +277,8 @@
                     }
 
                     it++;
-                    this.Status = string.Format("{0:P}", it / count);
+                    double it1 = it;
+                    Application.Current.Dispatcher.BeginInvoke((Action)(() => this.Status = string.Format("{0:P}", it1 / count)));
                 }
                 
                 this.storeService.Store(this.Library, this.libraryFile);

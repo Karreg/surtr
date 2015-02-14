@@ -33,7 +33,9 @@
             </StackPanel>
         </Expander>
         <Expander Header="Library" IsExpanded="True">
-            <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectionMode="Extended"></DataGrid>
+            <ScrollViewer MaxHeight="500">
+                <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectionMode="Extended"></DataGrid>
+            </ScrollViewer>
         </Expander>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Current Size: "></TextBlock>
@@ -45,7 +47,9 @@
         <Button Command="{Binding SetFavoriteCommand}">Favorite selection</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">
-            <DataGrid ItemsSource="{Binding SyncItems}"></DataGrid>
+            <ScrollViewer MaxHeight="500">
+                <DataGrid ItemsSource="{Binding SyncItems}"></DataGrid>
+            </ScrollViewer>
         </Expander>
         <Button Command="{Binding ExecuteCommand}">Execute</Button>
         <TextBlock Text="{Binding Status}"></TextBlock>

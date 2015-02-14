@@ -1,0 +1,5 @@
+- Filter on LibraryPath
+- Scan files first and then load library to update meta data
+- Scroll on data grid
+- Delete from UI
+- Open item with viewer
