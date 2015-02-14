@@ -1,5 +1,5 @@
 - Filter on LibraryPath
-- Scan files first and then load library to update meta data
+	(dataGridViewFields.DataSource as DataTable).DefaultView.RowFilter = string.Format("Field = '{0}'", textBoxFilter.Text);
 - Scroll on data grid
 - Delete from UI
 - Open item with viewer
