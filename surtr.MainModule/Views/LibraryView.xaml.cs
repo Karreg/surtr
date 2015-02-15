@@ -27,5 +27,15 @@ namespace surtr.MainModule.Views
             this.DataContext = viewModel;
             InitializeComponent();
         }
+
+        private void libraryGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.libraryGrid.Focus();
+        }
+
+        private void synchronizationGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.synchronizationGrid.Focus();
+        }
     }
 }

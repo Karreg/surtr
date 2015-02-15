@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:helpers="clr-namespace:surtr.MainModule.Views">
+             xmlns:helpers="clr-namespace:surtr.MainModule.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <StackPanel>
         <Expander Header="Configuration"  IsExpanded="True">
             <StackPanel>
@@ -33,17 +34,20 @@
             </StackPanel>
         </Expander>
         <Expander Header="Library" IsExpanded="True">
-            <StackPanel MaxHeight="500">
-                <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto">
-                    <DataGrid.InputBindings>
-                        <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
-                        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
-                        <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
-                        <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
-                        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
-                    </DataGrid.InputBindings>
-                </DataGrid>
-            </StackPanel>
+            <DataGrid x:Name="libraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
+                <DataGrid.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
+                    <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
+                    <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                    <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                    <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
+                </DataGrid.InputBindings>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding OpenCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DataGrid>
         </Expander>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Current Size: "></TextBlock>
@@ -55,9 +59,7 @@
         <Button Command="{Binding SaveCommand}">Save</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">
-            <StackPanel MaxHeight="500">
-                <DataGrid ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto"></DataGrid>
-            </StackPanel>
+            <DataGrid x:Name="synchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
         </Expander>
         <Button Command="{Binding ExecuteCommand}">Execute</Button>
         <TextBlock Text="{Binding Status}"></TextBlock>
