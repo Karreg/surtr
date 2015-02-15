@@ -1,5 +1,4 @@
-- Filter on LibraryPath
-	(dataGridViewFields.DataSource as DataTable).DefaultView.RowFilter = string.Format("Field = '{0}'", textBoxFilter.Text);
-- Scroll on data grid
-- Delete from UI
-- Open item with viewer
+- Filter by default "None" sync items
+- Status on open and save to avoid issues
+- Filter with keyword on titles
+- Bug on library size when multiple loading
