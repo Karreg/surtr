@@ -310,7 +310,10 @@
 
         private void OnNewSyncItem(ISyncItem syncItem)
         {
-            Application.Current.Dispatcher.BeginInvoke((Action)(() => this.SyncItems.Add(syncItem)));
+            if (syncItem.Action != SyncAction.Nothing)
+            {
+                Application.Current.Dispatcher.BeginInvoke((Action) (() => this.SyncItems.Add(syncItem)));
+            }
         }
 
         private void OnCurrentDirectory(string directory)

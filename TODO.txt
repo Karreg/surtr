@@ -1,4 +1,6 @@
-- Filter by default "None" sync items
+- Handle copy errors (readonly)
+- Remove readonly flags
 - Status on open and save to avoid issues
 - Filter with keyword on titles
 - Bug on library size when multiple loading
+- Optionally show "Nothing" sync items
