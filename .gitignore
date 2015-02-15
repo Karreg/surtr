@@ -11,3 +11,4 @@ surtr.Spikes/bin
 **/*.Cache
 /package/*.log.*
 /package/*.log
+/lib/CDisplayEx/cdisplayex.db
