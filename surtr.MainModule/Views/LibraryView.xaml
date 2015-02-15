@@ -34,20 +34,23 @@
             </StackPanel>
         </Expander>
         <Expander Header="Library" IsExpanded="True">
-            <DataGrid x:Name="libraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
-                <DataGrid.InputBindings>
-                    <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
-                    <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
-                    <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
-                    <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
-                    <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
-                </DataGrid.InputBindings>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding OpenCommand}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </DataGrid>
+            <StackPanel>
+            <ComboBox ItemsSource="{Binding LibraryFilters}" SelectedItem="{Binding SelectedFilter}"></ComboBox>
+                <DataGrid x:Name="libraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
+                        <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
+                    </DataGrid.InputBindings>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding OpenCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DataGrid>
+            </StackPanel>
         </Expander>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Current Size: "></TextBlock>

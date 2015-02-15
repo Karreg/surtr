@@ -33,6 +33,7 @@
         private string libraryFolder;
         private string remoteLibraryFolder;
         private string maxSize;
+        private string filter;
 
         public LibraryViewModel(IScanService scanService, IStoreService storeService,
             ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
@@ -59,9 +60,27 @@
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
             this.SelectedLibraryItems = new ObservableCollection<ILibraryItem>();
             this.SyncItems = new ObservableCollection<ISyncItem>();
+            this.LibraryFilters = new ObservableCollection<string>();
+
             this.ExecuteCommand = new DelegateCommand(this.Execute);
 
             this.MaxSize = "40";
+        }
+
+        public ObservableCollection<string> LibraryFilters { get; set; }
+
+        public string SelectedFilter
+        {
+            get { return this.filter; }
+            set
+            {
+                if (value != null && !value.Equals(this.filter))
+                {
+                    this.filter = value;
+                    this.OnPropertyChanged("SelectedFilter");
+                    this.FilterLibrary();
+                }
+            }
         }
 
         public string LibraryFolder {
@@ -160,6 +179,8 @@
         private void Load()
         {
             this.LibraryItems.Clear();
+            this.LibraryFilters.Clear();
+            this.LibraryFilters.Add(string.Empty);
 
             this.rootDispatcher.Dispatch(()
                 =>
@@ -184,9 +205,38 @@
                         }
 
                         ILibraryItem item = libraryItem;
-                        Application.Current.Dispatcher.BeginInvoke((Action)(() => this.LibraryItems.Add(item)));
+                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        {
+                            this.LibraryItems.Add(item);
+                            if (!this.LibraryFilters.Contains(item.LibraryPath))
+                            {
+                                this.LibraryFilters.Add(item.LibraryPath);
+                            }
+                        }));
                     }
                 });
+        }
+
+        private void FilterLibrary()
+        {
+            if (this.Library != null)
+            {
+                this.LibraryItems.Clear();
+                if (!string.IsNullOrEmpty(this.filter))
+                {
+                    foreach (var item in this.Library.Items.Where(i => i.LibraryPath.Equals(this.filter)))
+                    {
+                        this.LibraryItems.Add(item);
+                    }
+                }
+                else
+                {
+                    foreach (var item in this.Library.Items)
+                    {
+                        this.LibraryItems.Add(item);
+                    }
+                }
+            }
         }
 
         private void OnLibraryItemSelected(object sender, PropertyChangedEventArgs e)
