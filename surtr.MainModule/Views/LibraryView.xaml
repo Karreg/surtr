@@ -34,7 +34,15 @@
         </Expander>
         <Expander Header="Library" IsExpanded="True">
             <StackPanel MaxHeight="500">
-                <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto"></DataGrid>
+                <DataGrid ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
+                        <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
+                    </DataGrid.InputBindings>
+                </DataGrid>
             </StackPanel>
         </Expander>
         <StackPanel Orientation="Horizontal">
@@ -44,7 +52,7 @@
             <TextBlock Text="{Binding MaxSize}"></TextBlock>
             
         </StackPanel>
-        <Button Command="{Binding SetFavoriteCommand}">Favorite selection</Button>
+        <Button Command="{Binding SaveCommand}">Save</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">
             <StackPanel MaxHeight="500">

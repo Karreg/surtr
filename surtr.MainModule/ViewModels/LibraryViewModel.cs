@@ -4,7 +4,9 @@
     using System.Collections;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Net.Mime;
     using System.Runtime.CompilerServices;
     using System.Security.AccessControl;
@@ -46,6 +48,9 @@
             
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
+            this.OpenCommand = new DelegateCommand(this.Open);
+            this.DeleteCommand = new DelegateCommand(this.Delete);
+            this.SaveCommand = new DelegateCommand(this.Save);
 
             //this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
             this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
@@ -74,6 +79,8 @@
 
         public ObservableCollection<ILibraryItem> SelectedLibraryItems { get; set; }
 
+        public ILibraryItem SelectedLibraryItem { get; set; }
+
         public ICommand LoadCommand { get; private set; }
 
         public ICommand SetFavoriteCommand { get; private set; }
@@ -81,6 +88,12 @@
         public ICommand SynchronizeCommand { get; private set; }
 
         public ICommand ExecuteCommand { get; private set; }
+
+        public ICommand SaveCommand { get; private set; }
+
+        public ICommand OpenCommand { get; private set; }
+
+        public ICommand DeleteCommand { get; private set; }
 
         public string RemoteLibraryFolder
         {
@@ -112,6 +125,35 @@
                 {
                     item.Favorite = !item.Favorite;
                 }
+            }
+        }
+
+        private void Save()
+        {
+            this.storeService.Store(this.Library, this.libraryFile);
+        }
+
+        private void Open()
+        {
+            if (this.SelectedLibraryItem != null)
+            {
+                var openCommand = string.Format("{0} {1}", @"CDisplayEx\CDisplayEx.exe", this.SelectedLibraryItem.FullPathFilename);
+                var p = new Process();
+                // Redirect the output stream of the child process.
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.FileName = @"CDisplayEx\CDisplayEx.exe";
+                p.StartInfo.Arguments = string.Format("\"{0}\"", this.SelectedLibraryItem.FullPathFilename);
+                p.Start();
+            }
+        }
+
+        private void Delete()
+        {
+            var itemsToDelete = this.SelectedLibraryItems.ToList();
+            foreach (var libraryItem in itemsToDelete)
+            {
+                this.LibraryItems.Remove(libraryItem);
+                this.Library.DeleteItem(libraryItem.Name);
             }
         }
 
