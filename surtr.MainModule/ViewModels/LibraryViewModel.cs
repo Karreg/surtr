@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Configuration;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -53,8 +54,9 @@
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
             this.rootDispatcher = rootDispatcher;
-            //this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
-            this.LibraryFolder = @"G:\eBooks\Library";
+
+            var loadedFolder = ConfigurationManager.AppSettings["LocalLibraryFolder"];
+            this.LibraryFolder = !string.IsNullOrEmpty(loadedFolder) ? loadedFolder : string.Empty;
             
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
@@ -64,8 +66,9 @@
             this.DeleteCommand = new DelegateCommand(this.Delete);
             this.SaveCommand = new DelegateCommand(this.Save);
 
-            //this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
-            this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
+            loadedFolder = ConfigurationManager.AppSettings["RemoteLibraryFolder"];
+            this.RemoteLibraryFolder = !string.IsNullOrEmpty(loadedFolder) ? loadedFolder : string.Empty;
+
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
@@ -78,7 +81,8 @@
 
             this.ExecuteCommand = new DelegateCommand(this.Execute);
 
-            this.MaxSize = "40";
+            var loadedSize = ConfigurationManager.AppSettings["MaximumRemoteSize"];
+            this.MaxSize = !string.IsNullOrEmpty(loadedSize) ? loadedSize : "10";
         }
 
         public bool ShowNullAction

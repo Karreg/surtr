@@ -30,12 +30,12 @@ namespace surtr.MainModule.Views
 
         private void libraryGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.libraryGrid.Focus();
+            this.LibraryGrid.Focus();
         }
 
         private void synchronizationGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            this.synchronizationGrid.Focus();
+            this.SynchronizationGrid.Focus();
         }
     }
 }

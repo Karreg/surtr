@@ -8,6 +8,39 @@
              xmlns:helpers="clr-namespace:surtr.MainModule.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <StackPanel>
+        <Expander Header="Help" IsExpanded="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="150"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2">Library Keyboard shortcuts</TextBlock>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold">'CTRL+S'</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1">Save changes in library</TextBlock>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold">'+' or 'A'</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1">Set selection as favorite</TextBlock>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold">'-' or 'R'</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1">Unset selection as favorite</TextBlock>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold">'ENTER' or DoubleClick</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1">Open selected item</TextBlock>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="Bold" Foreground="Red">'DEL'</TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="1" Foreground="Red" FontWeight="Bold">Delete from library AND DISK</TextBlock>
+            </Grid>
+        </Expander>
         <Expander Header="Configuration"  IsExpanded="True">
             <StackPanel>
                 <GroupBox Header="Configuration">
@@ -49,7 +82,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0">Title filter</TextBlock>
                     <TextBox Text="{Binding TitleFilter}" MinWidth="50" Grid.Row="1" Grid.Column="1"></TextBox>
                 </Grid>
-                <DataGrid x:Name="libraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
+                <DataGrid x:Name="LibraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
@@ -74,12 +107,11 @@
             <TextBlock Text="{Binding MaxSize}"></TextBlock>
             
         </StackPanel>
-        <Button Command="{Binding SaveCommand}">Save</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">
             <StackPanel>
                 <CheckBox IsChecked="{Binding ShowNullAction}">Display already synced items</CheckBox>
-                <DataGrid x:Name="synchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
+                <DataGrid x:Name="SynchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
             </StackPanel>
         </Expander>
         <Button Command="{Binding ExecuteCommand}">Execute</Button>
