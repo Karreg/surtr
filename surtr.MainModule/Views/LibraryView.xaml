@@ -13,8 +13,8 @@
                 <GroupBox Header="Configuration">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
@@ -35,7 +35,20 @@
         </Expander>
         <Expander Header="Library" IsExpanded="True">
             <StackPanel>
-            <ComboBox ItemsSource="{Binding LibraryFilters}" SelectedItem="{Binding SelectedFilter}"></ComboBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock>Series filter</TextBlock>
+                    <ComboBox ItemsSource="{Binding LibraryFilters}" SelectedItem="{Binding SelectedFilter}" MinWidth="50" Grid.Row="0" Grid.Column="1"></ComboBox>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Title filter</TextBlock>
+                    <TextBox Text="{Binding TitleFilter}" MinWidth="50" Grid.Row="1" Grid.Column="1"></TextBox>
+                </Grid>
                 <DataGrid x:Name="libraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
@@ -64,7 +77,10 @@
         <Button Command="{Binding SaveCommand}">Save</Button>
         <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
         <Expander Header="Synchronization" IsExpanded="True">
-            <DataGrid x:Name="synchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
+            <StackPanel>
+                <CheckBox IsChecked="{Binding ShowNullAction}">Display already synced items</CheckBox>
+                <DataGrid x:Name="synchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
+            </StackPanel>
         </Expander>
         <Button Command="{Binding ExecuteCommand}">Execute</Button>
         <TextBlock Text="{Binding Status}"></TextBlock>

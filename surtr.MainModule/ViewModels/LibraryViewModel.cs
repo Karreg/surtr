@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Diagnostics;
@@ -17,6 +18,7 @@
     using LibraryManagement.Implementation;
     using LibraryManagement.Interface;
     using Michonne.Interfaces;
+    using Microsoft.Practices.Prism;
     using Microsoft.Practices.Prism.Commands;
 
     public class LibraryViewModel : INotifyPropertyChanged
@@ -34,6 +36,9 @@
         private string remoteLibraryFolder;
         private string maxSize;
         private string filter;
+        private IList<ISyncItem> syncItems;
+        private bool showNullAction;
+        private string titleFilter;
 
         public LibraryViewModel(IScanService scanService, IStoreService storeService,
             ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
@@ -48,8 +53,8 @@
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
             this.rootDispatcher = rootDispatcher;
-            this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
-            //this.LibraryFolder = @"G:\eBooks\Library";
+            //this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
+            this.LibraryFolder = @"G:\eBooks\Library";
             
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
@@ -59,18 +64,35 @@
             this.DeleteCommand = new DelegateCommand(this.Delete);
             this.SaveCommand = new DelegateCommand(this.Save);
 
-            this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
-            //this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
+            //this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
+            this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
             this.SelectedLibraryItems = new ObservableCollection<ILibraryItem>();
+
+            this.syncItems = new List<ISyncItem>();
             this.SyncItems = new ObservableCollection<ISyncItem>();
             this.LibraryFilters = new ObservableCollection<string>();
+            this.ShowNullAction = false;
 
             this.ExecuteCommand = new DelegateCommand(this.Execute);
 
             this.MaxSize = "40";
+        }
+
+        public bool ShowNullAction
+        {
+            get { return this.showNullAction; }
+            set
+            {
+                if (this.showNullAction != value)
+                {
+                    this.showNullAction = value;
+                    this.OnPropertyChanged("ShowNullAction");
+                    this.FilterSyncItems();
+                }
+            }
         }
 
         public ObservableCollection<string> LibraryFilters { get; set; }
@@ -84,6 +106,20 @@
                 {
                     this.filter = value;
                     this.OnPropertyChanged("SelectedFilter");
+                    this.FilterLibrary();
+                }
+            }
+        }
+
+        public string TitleFilter
+        {
+            get { return this.titleFilter; }
+            set
+            {
+                if (value != null && !value.Equals(this.titleFilter))
+                {
+                    this.titleFilter = value;
+                    this.OnPropertyChanged("TitleFilter");
                     this.FilterLibrary();
                 }
             }
@@ -248,17 +284,33 @@
                 {
                     foreach (var item in this.Library.Items.Where(i => i.LibraryPath.Equals(this.filter)))
                     {
-                        this.LibraryItems.Add(item);
+                        if (this.TitleContainsFilter(item.Filename))
+                        {
+                            this.LibraryItems.Add(item);
+                        }
                     }
                 }
                 else
                 {
                     foreach (var item in this.Library.Items)
                     {
-                        this.LibraryItems.Add(item);
+                        if (this.TitleContainsFilter(item.Filename))
+                        {
+                            this.LibraryItems.Add(item);
+                        }
                     }
                 }
             }
+        }
+
+        private bool TitleContainsFilter(string title)
+        {
+            if (!string.IsNullOrEmpty(this.titleFilter))
+            {
+                return title.Contains(this.titleFilter);
+            }
+
+            return true;
         }
 
         private void OnLibraryItemSelected(object sender, PropertyChangedEventArgs e)
@@ -302,9 +354,23 @@
             }
         }
 
+        private void FilterSyncItems()
+        {
+            this.SyncItems.Clear();
+            if (this.showNullAction)
+            {
+                this.SyncItems.AddRange(syncItems);
+            }
+            else
+            {
+                this.SyncItems.AddRange(syncItems.Where(i => i.Action != SyncAction.Nothing));
+            }
+        }
+
         private void Synchronize()
         {
             this.SyncItems.Clear();
+            this.syncItems.Clear();
 
             this.rootDispatcher.Dispatch(() =>
             {
@@ -332,7 +398,8 @@
 
         private void OnNewSyncItem(ISyncItem syncItem)
         {
-            if (syncItem.Action != SyncAction.Nothing)
+            this.syncItems.Add(syncItem);
+            if (this.showNullAction || syncItem.Action != SyncAction.Nothing)
             {
                 Application.Current.Dispatcher.BeginInvoke((Action) (() => this.SyncItems.Add(syncItem)));
             }

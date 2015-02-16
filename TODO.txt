@@ -1,2 +1,0 @@
-- Filter with keyword on titles
-- Optionally show "Nothing" sync items
