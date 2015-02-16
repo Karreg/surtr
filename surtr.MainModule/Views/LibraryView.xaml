@@ -9,9 +9,9 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <StackPanel>
         <Expander Header="Help" IsExpanded="False">
+            <GroupBox Header="Keyboard shortcuts">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -23,23 +23,22 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2">Library Keyboard shortcuts</TextBlock>
-                
-                <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold">'CTRL+S'</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="1">Save changes in library</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold">'CTRL+S'</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1">Save changes in library</TextBlock>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold">'+' or 'A'</TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1">Set selection as favorite</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold">'+' or 'A'</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1">Set selection as favorite</TextBlock>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold">'-' or 'R'</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1">Unset selection as favorite</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold">'-' or 'R'</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1">Unset selection as favorite</TextBlock>
 
-                <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold">'ENTER' or DoubleClick</TextBlock>
-                <TextBlock Grid.Row="4" Grid.Column="1">Open selected item</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold">'ENTER' or DoubleClick</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1">Open selected item</TextBlock>
 
-                <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="Bold" Foreground="Red">'DEL'</TextBlock>
-                <TextBlock Grid.Row="5" Grid.Column="1" Foreground="Red" FontWeight="Bold">Delete from library AND DISK</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Foreground="Red">'DEL'</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="1" Foreground="Red" FontWeight="Bold">Delete from library AND DISK</TextBlock>
             </Grid>
+            </GroupBox>
         </Expander>
         <Expander Header="Configuration"  IsExpanded="True">
             <StackPanel>
