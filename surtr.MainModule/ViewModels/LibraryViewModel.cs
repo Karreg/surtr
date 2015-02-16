@@ -41,20 +41,26 @@
             this.scanService = scanService;
             this.scanService.CurrentDirectory += this.OnCurrentDirectory;
             this.storeService = storeService;
+            this.storeService.Loaded += () => this.Status = "Loaded";
+            this.storeService.Loading += () => this.Status = "Loading...";
+            this.storeService.Saved += () => this.Status = "Saved";
+            this.storeService.Saving += p => this.Status = string.Format("Saving... {0:P}", p);
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
             this.rootDispatcher = rootDispatcher;
-            //this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
-            this.LibraryFolder = @"G:\eBooks\Library";
+            this.LibraryFolder = @"C:\Users\kryst_000\Documents\libraryTest";
+            //this.LibraryFolder = @"G:\eBooks\Library";
             
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
+            this.AddFavoriteCommand = new DelegateCommand(() => this.Favorite(true));
+            this.RemoveFavoriteCommand = new DelegateCommand(() => this.Favorite(false));
             this.OpenCommand = new DelegateCommand(this.Open);
             this.DeleteCommand = new DelegateCommand(this.Delete);
             this.SaveCommand = new DelegateCommand(this.Save);
 
-            //this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
-            this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
+            this.RemoteLibraryFolder = @"C:\Users\kryst_000\Documents\libraryTestOutput";
+            //this.RemoteLibraryFolder = @"\\midgard\Downloads\eBooksSync";
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
             this.LibraryItems = new ObservableCollection<ILibraryItem>();
@@ -104,6 +110,10 @@
 
         public ICommand SetFavoriteCommand { get; private set; }
 
+        public ICommand AddFavoriteCommand { get; private set; }
+
+        public ICommand RemoveFavoriteCommand { get; private set; }
+
         public ICommand SynchronizeCommand { get; private set; }
 
         public ICommand ExecuteCommand { get; private set; }
@@ -147,6 +157,17 @@
             }
         }
 
+        private void Favorite(bool favorite)
+        {
+            if (this.SelectedLibraryItems != null)
+            {
+                foreach (var item in this.SelectedLibraryItems)
+                {
+                    item.Favorite = favorite;
+                }
+            }
+        }
+
         private void Save()
         {
             this.storeService.Store(this.Library, this.libraryFile);
@@ -181,6 +202,7 @@
             this.LibraryItems.Clear();
             this.LibraryFilters.Clear();
             this.LibraryFilters.Add(string.Empty);
+            this.CurrentSize = 0;
 
             this.rootDispatcher.Dispatch(()
                 =>

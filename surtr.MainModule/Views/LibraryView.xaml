@@ -40,8 +40,10 @@
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
-                        <KeyBinding Key="Add" Command="{Binding SetFavoriteCommand}"></KeyBinding>
-                        <KeyBinding Key="Subtract" Command="{Binding SetFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="Add" Command="{Binding AddFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="A" Command="{Binding AddFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="Subtract" Command="{Binding RemoveFavoriteCommand}"></KeyBinding>
+                        <KeyBinding Key="R" Command="{Binding RemoveFavoriteCommand}"></KeyBinding>
                         <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"></KeyBinding>
                     </DataGrid.InputBindings>
                     <i:Interaction.Triggers>

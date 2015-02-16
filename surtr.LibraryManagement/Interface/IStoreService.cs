@@ -1,10 +1,20 @@
 ﻿namespace surtr.LibraryManagement.Interface
 {
+    using System;
+
     /// <summary>
     /// Interface for storing / loading libraries
     /// </summary>
     public interface IStoreService
     {
+        event Action Loading;
+
+        event Action Loaded;
+
+        event Action<double> Saving;
+
+        event Action Saved;
+
         /// <summary>
         /// Stores the library in a file
         /// </summary>

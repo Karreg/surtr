@@ -21,7 +21,10 @@ namespace surtr.LibraryManagement.Implementation
             this.AddDate = DateTime.Now;
             if (this.Exists)
             {
-                this.Size = ((double)new FileInfo(this.FullPathFilename).Length)/(1024*1024);
+                var fileInfo = new FileInfo(this.FullPathFilename);
+                this.Size = ((double)fileInfo.Length)/(1024*1024);
+                fileInfo.Attributes &= ~FileAttributes.ReadOnly;
+
             }
         }
 
@@ -30,8 +33,11 @@ namespace surtr.LibraryManagement.Implementation
             get { return this.favorite; }
             set
             {
-                this.favorite = value;
-                this.OnPropertyChanged("Favorite");
+                if (this.favorite != value)
+                {
+                    this.favorite = value;
+                    this.OnPropertyChanged("Favorite");
+                }
             }
         }
 
