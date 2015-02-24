@@ -1,0 +1,3 @@
+- Transform PDF/RAR/7z to ZIP
+- Rename zip files to cbz
+- Rename rar files to cbr
