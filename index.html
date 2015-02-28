@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="surtr : Simple tool comics library synchronization">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>surtr</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Karreg/surtr">View on GitHub</a>
+
+          <h1 id="project_title">surtr</h1>
+          <h2 id="project_tagline">Simple tool comics library synchronization</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Karreg/surtr/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Karreg/surtr/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="what-is-surtr" class="anchor" href="#what-is-surtr" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is surtr?</h3>
+
+<p>surtr is a tool that allows to synchronize all or some comics of a library with another folder.</p>
+
+<h1>
+<a id="why-surtr" class="anchor" href="#why-surtr" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why surtr?</h1>
+
+<p>About the name, <a href="http://en.wikipedia.org/wiki/Surtr">please have fun reading this</a>.</p>
+
+<p>For a long time, I had difficulties to synchronize my comcis on my tablet. At first, my tablet could contain all my comics. So standard sync tools were enough.
+Then came a moment where my tablet was not big enough to contain all my library. I looked for a tool allowing me to sync a part of the library. But unfortunately, I have never found one. This kind of tool exist for music. Playlists are a common thing for music library tools. This is exactly what I needed, but nothing for standard files.</p>
+
+<p>So the idea of surtr was born. Being able to create playlists for a comics library, and sync one or more playlists to my tablet, with a criteria of maximum size and alerts when this maximum was exceeded.</p>
+
+<p>surtr does not provide, yet, this feature. But it's still usable. What it does for now is allow to set comics as favorite, and these favorites will be sync'd. This is all file based, and all files within a folder (and sub-folders) will be included in the library. Supported formats are zip/cbz, rar/cbr and pdf.</p>
+
+<p>For now, what I do is sync the favorite files to a shared folder (on a NAS for example) and sync this folder with my tablet. This is done by tools like the excellent <a href="https://play.google.com/store/apps/details?id=dk.tacit.android.foldersync.full">FolderSync</a> (free version available, but the developer deserve to be paid for his work).</p>
+
+<p>surtr also provides really simple features, like opening the comic with an external viewer, and delete the file from both the library and the computer.</p>
+
+<p>Beware, the UI is really, I mean <em>REALLY</em>, basic. It's mostly keyboard shortcuts, big ugly buttons, and it's not even safe, like for example buttons that won't be disable while an operation is running...</p>
+
+<h1>
+<a id="what-is-the-plan" class="anchor" href="#what-is-the-plan" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the plan?</h1>
+
+<p>In the future, I would like surtr being able to do more things, like:</p>
+
+<ul>
+<li>normalize the extension of the files</li>
+<li>convert other formats to zip/cbz</li>
+<li>display the first picture of the file</li>
+<li>easily edit the cover (cropping)</li>
+<li>choose another page as cover</li>
+<li>renaming of the files</li>
+</ul>
+
+<p>One of the most important feature I would like, is MTP synchronization. Because my tablets have always been on Android, and I don't want to change. But Google, for a good reason, has abandoned Universel Mass Storage protocol. But they chose a really crappy protocol to replace it: MTP/PTP (Media Transfer Protocol and Picture Transfer Protocol). This protocol is a hell, is not stable, is buggy, and is not even active (stable version came with Windows Vista, no more news since). If you have issues with accessing the content of your tablet, you know why now.</p>
+
+<p>I would like to improve the UI too. I won't work on a theme system or shiny stuff, but the current UI is ugly.</p>
+
+<p>Also, on a more technical aspect, I didn't really use TDD. Which is <em>bad</em>. So I'll improve this aspect in the future.</p>
+
+<h1>
+<a id="something-else" class="anchor" href="#something-else" aria-hidden="true"><span class="octicon octicon-link"></span></a>Something else?</h1>
+
+<p>Yes.</p>
+
+<p>I'm using @dupdob/Michonne as library for async operations. Good library, created by great developers that knows about multi-threading.</p>
+
+<p>I will give @adamhathcock/sharpcompress a try for all archive operations. They are referenced in the project, but not used yet.</p>
+
+<p>I have used an icon under Creative Common Licence. But I don't remember where I found it, so I can't give credits (it all started as a personal tool. It still is). That's why it will be changed in the future. If this icon is yours, please contact me, it will be easier to give credits than to change the icon :)</p>
+
+<p>I have chosen Prism as MVVM framework. At first I wanted to use MVVM Light Toolkit, but all their stuff are now on pluralsight. And I don't really like this choice (I respect it though, it's their choice). Prism is not what I call an easy framework and it's far from perfect. Especially since I've been using a far more performant framework at work (base on Prism). Unfortunately it's proprietary. And I will be able to put Prism on my CV ;)</p>
+
+<p>That's about it. If you want to try this tool, be my guest. But it's not yet packaged as a usable tool. It will be, if some are insterested (I don't expect that though).</p>
+
+<p>I'm currently working as software architect in a investment bank. So I'm busy all day working on software. That's why I won't be active everyday on this project. It can be inactive for months, especially since I can already use it as is. All the other features are nice to have.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">surtr maintained by <a href="https://github.com/Karreg">Karreg</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
