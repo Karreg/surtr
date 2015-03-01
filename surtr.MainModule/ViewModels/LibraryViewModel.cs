@@ -14,6 +14,7 @@
     using System.Security.AccessControl;
     using System.Windows;
     using System.Windows.Input;
+    using System.Windows.Threading;
     using Common.Logging.Configuration;
     using LibraryManagement.Annotations;
     using LibraryManagement.Implementation;
@@ -40,10 +41,13 @@
         private IList<ISyncItem> syncItems;
         private bool showNullAction;
         private string titleFilter;
+        private readonly Dispatcher appDispatcher;
 
         public LibraryViewModel(IScanService scanService, IStoreService storeService,
             ISynchronizeService synchronizeService, IUnitOfExecution rootDispatcher)
         {
+            this.appDispatcher = Application.Current.Dispatcher;
+
             this.scanService = scanService;
             this.scanService.CurrentDirectory += this.OnCurrentDirectory;
             this.storeService = storeService;
@@ -267,7 +271,7 @@
                         }
 
                         ILibraryItem item = libraryItem;
-                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        this.appDispatcher.BeginInvoke((Action)(() =>
                         {
                             this.LibraryItems.Add(item);
                             if (!this.LibraryFilters.Contains(item.LibraryPath))
@@ -405,7 +409,7 @@
             this.syncItems.Add(syncItem);
             if (this.showNullAction || syncItem.Action != SyncAction.Nothing)
             {
-                Application.Current.Dispatcher.BeginInvoke((Action) (() => this.SyncItems.Add(syncItem)));
+                this.appDispatcher.BeginInvoke((Action) (() => this.SyncItems.Add(syncItem)));
             }
         }
 
@@ -434,9 +438,15 @@
             {
                 foreach (var syncItem in SyncItems)
                 {
+                    it++;
+                    double it1 = it;
+
                     switch (syncItem.Action)
                     {
                         case SyncAction.CopyToRemote:
+
+                            this.Status = string.Format("Copying {0} ({1:P})", syncItem.Item.LibraryPath, it1 / count);
+
                             var remoteItem = new LibraryItem(
                                 this.RemoteLibraryFolder,
                                 syncItem.Item.LibraryPath,
@@ -452,13 +462,16 @@
                             File.Copy(src, dest, true);
                             break;
                         case SyncAction.DeleteFromLocal:
+                            this.Status = string.Format("Deleting local {0} ({1:P})", syncItem.Item.LibraryPath, it1 / count);
                             this.RemoteLibrary.DeleteItem(syncItem.Name);
                             this.Library.DeleteItem(syncItem.Name);
                             break;
                         case SyncAction.DeleteFromRemote:
+                            this.Status = string.Format("Deleting remote {0} ({1:P})", syncItem.Item.LibraryPath, it1 / count);
                             this.RemoteLibrary.DeleteItem(syncItem.Name);
                             break;
                         case SyncAction.RemoveFromLocalLibrary:
+                            this.Status = string.Format("Removing {0} ({1:P})", syncItem.Item.LibraryPath, it1 / count);
                             this.RemoteLibrary.DeleteItem(syncItem.Name);
                             syncItem.Item.Favorite = false;
                             break;
@@ -466,14 +479,12 @@
                         default:
                             break;
                     }
-
-                    it++;
-                    double it1 = it;
-                    Application.Current.Dispatcher.BeginInvoke((Action)(() => this.Status = string.Format("{0:P}", it1 / count)));
                 }
                 
                 this.storeService.Store(this.Library, this.libraryFile);
                 this.storeService.Store(this.RemoteLibrary, this.remoteLibraryFile);
+
+                this.Status = "Sync'd.";
             });
         }
     }
