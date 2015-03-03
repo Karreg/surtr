@@ -400,7 +400,9 @@
                 options.LocalFileIsUpdated = SyncAction.CopyToRemote;
                 options.RemoteFileIsDeleted = SyncAction.RemoveFromLocalLibrary;
                 options.RemoteFileIsUpdated = SyncAction.Nothing;
+                this.Status = "Comparing...";
                 this.synchronizeService.Synchronize(this.Library, this.RemoteLibrary, options);
+                this.Status = "Done";
             });
         }
 
@@ -436,10 +438,11 @@
             double it = 0;
             this.rootDispatcher.Dispatch(() =>
             {
-                foreach (var syncItem in SyncItems)
+                foreach (var syncItem in SyncItems.ToList())
                 {
                     it++;
                     double it1 = it;
+                    var item = syncItem;
 
                     switch (syncItem.Action)
                     {
@@ -467,7 +470,7 @@
                             this.Library.DeleteItem(syncItem.Name);
                             break;
                         case SyncAction.DeleteFromRemote:
-                            this.Status = string.Format("Deleting remote {0} ({1:P})", syncItem.Item.LibraryPath, it1 / count);
+                            this.Status = string.Format("Deleting remote {0} ({1:P})", syncItem.RemoteItem.LibraryPath, it1 / count);
                             this.RemoteLibrary.DeleteItem(syncItem.Name);
                             break;
                         case SyncAction.RemoveFromLocalLibrary:
@@ -479,6 +482,8 @@
                         default:
                             break;
                     }
+
+                    this.appDispatcher.BeginInvoke(((Action)(() => this.SyncItems.Remove(item))));
                 }
                 
                 this.storeService.Store(this.Library, this.libraryFile);

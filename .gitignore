@@ -13,3 +13,4 @@ surtr.Spikes/bin
 /package/*.log
 /surtr/CDisplayEx/cdisplayex.db
 /surtr/*.user
+/surtr.UnitTests/*.user
