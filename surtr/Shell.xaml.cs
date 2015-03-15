@@ -1,15 +1,18 @@
-﻿using System.Windows;
-
-namespace surtr
+﻿namespace surtr
 {
+    using System.Windows;
+
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Interaction logic
     /// </summary>
     public partial class Shell : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shell"/> class.
+        /// </summary>
         public Shell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

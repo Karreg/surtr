@@ -1,6 +1,11 @@
-﻿using Microsoft.Practices.Prism.PubSubEvents;
-
-namespace surtr.Shared
+﻿namespace surtr.Shared
 {
-    public class ApplicationExitEvent : PubSubEvent<string> { }  
+    using Microsoft.Practices.Prism.PubSubEvents;
+
+    /// <summary>
+    /// Application exit event
+    /// </summary>
+    public class ApplicationExitEvent : PubSubEvent<string>
+    {
+    }
 }

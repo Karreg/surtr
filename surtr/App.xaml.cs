@@ -1,18 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="App.xaml.cs" company="">
+//   
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace surtr
 {
+    using System.Windows;
+
     /// <summary>
-    /// Logique d'interaction pour App.xaml
+    /// Interaction logic
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// The on startup.
+        /// </summary>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);

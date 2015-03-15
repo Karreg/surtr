@@ -6,17 +6,44 @@ namespace surtr.LibraryManagement.Implementation
     using System.Linq;
     using Interface;
 
+    /// <summary>
+    /// The synchronize service.
+    /// </summary>
     public class SynchronizeService : ISynchronizeService
     {
+        /// <summary>
+        /// The store service.
+        /// </summary>
         private readonly IStoreService storeService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SynchronizeService"/> class.
+        /// </summary>
+        /// <param name="storeService">
+        /// The store service.
+        /// </param>
         public SynchronizeService(IStoreService storeService)
         {
             this.storeService = storeService;
         }
 
+        /// <summary>
+        /// The new sync item.
+        /// </summary>
         public event Action<ISyncItem> NewSyncItem;
 
+        /// <summary>
+        /// The synchronize.
+        /// </summary>
+        /// <param name="library">
+        /// The library.
+        /// </param>
+        /// <param name="remoteFolder">
+        /// The remote folder.
+        /// </param>
+        /// <param name="options">
+        /// The options.
+        /// </param>
         public void Synchronize(ILibrary library, string remoteFolder, SynchronizationOptions options)
         {
             var remoteFile = Path.Combine(remoteFolder, "sync.sur");
@@ -27,6 +54,18 @@ namespace surtr.LibraryManagement.Implementation
             }
         }
 
+        /// <summary>
+        /// The synchronize.
+        /// </summary>
+        /// <param name="library">
+        /// The library.
+        /// </param>
+        /// <param name="remoteLibrary">
+        /// The remote library.
+        /// </param>
+        /// <param name="options">
+        /// The options.
+        /// </param>
         public void Synchronize(ILibrary library, ILibrary remoteLibrary, SynchronizationOptions options)
         {
             var syncItems = new Dictionary<string, ISyncItem>();
@@ -65,6 +104,15 @@ namespace surtr.LibraryManagement.Implementation
             }
         }
 
+        /// <summary>
+        /// The set sync action.
+        /// </summary>
+        /// <param name="syncItem">
+        /// The sync item.
+        /// </param>
+        /// <param name="options">
+        /// The options.
+        /// </param>
         public void SetSyncAction(ISyncItem syncItem, SynchronizationOptions options)
         {
             if (syncItem.Item == null && syncItem.RemoteItem == null)

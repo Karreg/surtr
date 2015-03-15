@@ -19,31 +19,33 @@
         event Action<ILibraryItem> UpdatedItem;
 
         /// <summary>
-        /// The root directory of the library
+        /// Gets the root directory of the library
         /// </summary>
         string RootDirectory { get; }
 
         /// <summary>
-        /// List of items in the library
+        /// Gets the list of items in the library
         /// </summary>
         IEnumerable<ILibraryItem> Items { get; }
 
         /// <summary>
-        /// Add the library item to the library
+        /// Adds the library item to the library
         /// </summary>
-        /// <param name="libraryItem"></param>
+        /// <param name="libraryItem">
+        /// The library Item.
+        /// </param>
         void AddItem(ILibraryItem libraryItem);
 
         /// <summary>
         /// Removes the library item from the library
         /// </summary>
-        /// <param name="libraryItemName"></param>
+        /// <param name="libraryItemName">The library Item.</param>
         void RemoveItem(string libraryItemName);
 
         /// <summary>
         /// Deletes the library item. Physically I mean.
         /// </summary>
-        /// <param name="libraryItemName"></param>
+        /// <param name="libraryItemName">The library Item.</param>
         void DeleteItem(string libraryItemName);
     }
 }
