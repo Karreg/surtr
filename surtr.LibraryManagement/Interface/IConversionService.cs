@@ -1,22 +1,22 @@
-﻿namespace surtr.LibraryManagement.Interface
+﻿namespace Surtr.LibraryManagement.Interface
 {
     /// <summary>
     /// Interface for type conversion.
     /// </summary>
-    interface IConversionService
+    public interface IConversionService
     {
         /// <summary>
         /// Formats the extension.
         /// </summary>
         /// <param name="libraryItem">The library item.</param>
-        /// <returns></returns>
+        /// <returns>The new library item.</returns>
         ILibraryItem FormatExtension(ILibraryItem libraryItem);
 
         /// <summary>
         /// Converts to zip.
         /// </summary>
         /// <param name="libraryItem">The library item.</param>
-        /// <returns></returns>
+        /// <returns>The new library item.</returns>
         ILibraryItem ConvertToZip(ILibraryItem libraryItem);
     }
 }

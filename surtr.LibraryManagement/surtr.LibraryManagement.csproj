@@ -7,7 +7,7 @@
     <ProjectGuid>{397790DB-801B-4EC8-964A-27BB8F1D943F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>surtr.LibraryManagement</RootNamespace>
+    <RootNamespace>Surtr.LibraryManagement</RootNamespace>
     <AssemblyName>surtr.LibraryManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="surtr.MainModule.Views.LibraryView"
+﻿<UserControl x:Class="Surtr.MainModule.Views.LibraryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:helpers="clr-namespace:surtr.MainModule.Views"
+             xmlns:helpers="clr-namespace:Surtr.MainModule.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <StackPanel>
         <Expander Header="Help" IsExpanded="False">
@@ -81,7 +81,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0">Title filter</TextBlock>
                     <TextBox Text="{Binding TitleFilter}" MinWidth="50" Grid.Row="1" Grid.Column="1"></TextBox>
                 </Grid>
-                <DataGrid x:Name="LibraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="libraryGrid_MouseEnter" MaxHeight="500">
+                <DataGrid x:Name="LibraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="LibraryGridMouseEnter" MaxHeight="500">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
@@ -110,7 +110,7 @@
         <Expander Header="Synchronization" IsExpanded="True">
             <StackPanel>
                 <CheckBox IsChecked="{Binding ShowNullAction}">Display already synced items</CheckBox>
-                <DataGrid x:Name="SynchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="synchronizationGrid_MouseEnter"></DataGrid>
+                <DataGrid x:Name="SynchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="SynchronizationGridMouseEnter"></DataGrid>
             </StackPanel>
         </Expander>
         <Button Command="{Binding ExecuteCommand}">Execute</Button>

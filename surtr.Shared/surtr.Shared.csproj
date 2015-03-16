@@ -7,7 +7,7 @@
     <ProjectGuid>{029D7A69-A3AE-485D-BB6E-0DBDCC2652EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>surtr.Shared</RootNamespace>
+    <RootNamespace>Surtr.Shared</RootNamespace>
     <AssemblyName>surtr.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

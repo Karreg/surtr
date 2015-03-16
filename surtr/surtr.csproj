@@ -7,7 +7,7 @@
     <ProjectGuid>{9E11FABD-E9D8-439C-9532-B9F7C6F03A19}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>surtr</RootNamespace>
+    <RootNamespace>Surtr</RootNamespace>
     <AssemblyName>surtr</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

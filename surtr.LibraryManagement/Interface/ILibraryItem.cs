@@ -1,8 +1,7 @@
-﻿namespace surtr.LibraryManagement.Interface
+﻿namespace Surtr.LibraryManagement.Interface
 {
     using System;
     using System.ComponentModel;
-    using System.IO;
 
     /// <summary>
     /// Interface for library items
@@ -10,17 +9,20 @@
     public interface ILibraryItem : INotifyPropertyChanged
     {
         /// <summary>
-        /// Is the item a favorite ? (useful until playlist are handled)
+        /// Gets or sets a value indicating whether this <see cref="ILibraryItem"/> is favorite.
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if favorite; otherwise, <c>false</c>.
+        /// </value>
         bool Favorite { get; set; }
 
         /// <summary>
-        /// Item name (i.e. filename without extension)
+        /// Gets the Item name (i.e. filename without extension)
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// Add date
+        /// Gets or sets the Add date
         /// </summary>
         DateTime AddDate { get; set; }
 
@@ -30,37 +32,40 @@
         string LibraryPath { get; }
 
         /// <summary>
-        /// Full path of the item, without the filename
+        /// Gets the Full path of the item, without the filename
         /// </summary>
         string Path { get; }
 
         /// <summary>
-        /// Filename, with extension.
+        /// Gets the Filename, with extension.
         /// </summary>
         string Filename { get; }
 
         /// <summary>
-        /// Full path filename, with extension.
+        /// Gets the Full path filename, with extension.
         /// </summary>
         string FullPathFilename { get; }
 
         /// <summary>
-        /// Last modification date
+        /// Gets the Last modification date
         /// </summary>
         DateTime LastModificationDate { get; }
 
         /// <summary>
-        /// Creation date
+        /// Gets the Creation date
         /// </summary>
         DateTime CreationDate { get; }
 
         /// <summary>
-        /// True if file exists. False either way.
+        /// Gets a value indicating whether this <see cref="ILibraryItem"/> exists.
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if exists; otherwise, <c>false</c>.
+        /// </value>
         bool Exists { get; }
 
         /// <summary>
-        /// Size in GB
+        /// Gets the Size in GB
         /// </summary>
         double Size { get; }
     }

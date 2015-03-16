@@ -1,4 +1,4 @@
-﻿namespace surtr
+﻿namespace Surtr
 {
     using System.Windows;
 

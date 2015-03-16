@@ -1,4 +1,4 @@
-﻿namespace surtr.LibraryManagement.Interface
+﻿namespace Surtr.LibraryManagement.Interface
 {
     using System;
     using System.Collections.Generic;

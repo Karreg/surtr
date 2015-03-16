@@ -1,10 +1,10 @@
-﻿namespace surtr.LibraryManagement.Implementation
+﻿namespace Surtr.LibraryManagement.Implementation
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
 
-    using surtr.LibraryManagement.Interface;
+    using Surtr.LibraryManagement.Interface;
 
     /// <summary>
     /// The scan service.
@@ -35,17 +35,6 @@
             }
 
             return library;
-        }
-
-        /// <summary>
-        /// The update library.
-        /// </summary>
-        /// <param name="library">
-        /// The library.
-        /// </param>
-        public void UpdateLibrary(ILibrary library)
-        {
-            // TODO remove this, deprecated
         }
 
         /// <summary>

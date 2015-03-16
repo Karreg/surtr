@@ -7,7 +7,7 @@
     <ProjectGuid>{35CCFEFB-3808-458A-94CD-23745DE9EE3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>surtr.UnitTests</RootNamespace>
+    <RootNamespace>Surtr.UnitTests</RootNamespace>
     <AssemblyName>surtr.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

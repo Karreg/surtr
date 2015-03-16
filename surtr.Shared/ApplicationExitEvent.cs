@@ -1,4 +1,4 @@
-﻿namespace surtr.Shared
+﻿namespace Surtr.Shared
 {
     using Microsoft.Practices.Prism.PubSubEvents;
 

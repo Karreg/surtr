@@ -1,10 +1,10 @@
-﻿namespace surtr.LibraryManagement.Implementation
+﻿namespace Surtr.LibraryManagement.Implementation
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
 
-    using surtr.LibraryManagement.Interface;
+    using Surtr.LibraryManagement.Interface;
 
     /// <summary>
     /// The library.
