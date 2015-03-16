@@ -21,6 +21,7 @@
     using Surtr.LibraryManagement.Annotations;
     using Surtr.LibraryManagement.Implementation;
     using Surtr.LibraryManagement.Interface;
+    using Surtr.MainModule.Services;
 
     /// <summary>
     /// The library view model.
@@ -56,6 +57,11 @@
         /// The sync items.
         /// </summary>
         private readonly IList<ISyncItem> syncItems;
+
+        /// <summary>
+        /// The settings service
+        /// </summary>
+        private readonly ISettingsService settingsService;
 
         /// <summary>
         /// The library file.
@@ -108,24 +114,18 @@
         private string titleFilter;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LibraryViewModel"/> class.
+        /// Initializes a new instance of the <see cref="LibraryViewModel" /> class.
         /// </summary>
-        /// <param name="scanService">
-        /// The scan service.
-        /// </param>
-        /// <param name="storeService">
-        /// The store service.
-        /// </param>
-        /// <param name="synchronizeService">
-        /// The synchronize service.
-        /// </param>
-        /// <param name="rootDispatcher">
-        /// The root dispatcher.
-        /// </param>
+        /// <param name="scanService">The scan service.</param>
+        /// <param name="storeService">The store service.</param>
+        /// <param name="synchronizeService">The synchronize service.</param>
+        /// <param name="settingsService">The settings service.</param>
+        /// <param name="rootDispatcher">The root dispatcher.</param>
         public LibraryViewModel(
             IScanService scanService,
             IStoreService storeService,
             ISynchronizeService synchronizeService,
+            ISettingsService settingsService,
             IUnitOfExecution rootDispatcher)
         {
             this.appDispatcher = Application.Current.Dispatcher;
@@ -139,10 +139,10 @@
             this.storeService.Saving += p => this.Status = string.Format("Saving... {0:P}", p);
             this.synchronizeService = synchronizeService;
             this.synchronizeService.NewSyncItem += this.OnNewSyncItem;
+            this.settingsService = settingsService;
             this.rootDispatcher = rootDispatcher;
 
-            var loadedFolder = ConfigurationManager.AppSettings["LocalLibraryFolder"];
-            this.LibraryFolder = !string.IsNullOrEmpty(loadedFolder) ? loadedFolder : string.Empty;
+            this.LibraryFolder = this.settingsService.LocalLibraryFolder;
             
             this.LoadCommand = new DelegateCommand(this.Load);
             this.SetFavoriteCommand = new DelegateCommand(this.SetFavorite);
@@ -152,8 +152,7 @@
             this.DeleteCommand = new DelegateCommand(this.Delete);
             this.SaveCommand = new DelegateCommand(this.Save);
 
-            loadedFolder = ConfigurationManager.AppSettings["RemoteLibraryFolder"];
-            this.RemoteLibraryFolder = !string.IsNullOrEmpty(loadedFolder) ? loadedFolder : string.Empty;
+            this.RemoteLibraryFolder = this.settingsService.RemoteLibraryFolder;
 
             this.SynchronizeCommand = new DelegateCommand(this.Synchronize);
 
@@ -167,8 +166,7 @@
 
             this.ExecuteCommand = new DelegateCommand(this.Execute);
 
-            var loadedSize = ConfigurationManager.AppSettings["MaximumRemoteSize"];
-            this.MaxSize = !string.IsNullOrEmpty(loadedSize) ? loadedSize : "10";
+            this.MaxSize = this.settingsService.MaximumRemoteSize;
         }
 
         /// <summary>
@@ -258,6 +256,7 @@
             {
                 this.libraryFolder = value;
                 this.OnPropertyChanged();
+                this.settingsService.LocalLibraryFolder = value;
             }
         }
 
@@ -340,6 +339,7 @@
             {
                 this.remoteLibraryFolder = value;
                 this.OnPropertyChanged();
+                this.settingsService.RemoteLibraryFolder = value;
             }
         }
 
@@ -408,6 +408,7 @@
             {
                 this.maxSize = value;
                 this.OnPropertyChanged();
+                this.settingsService.MaximumRemoteSize = value;
             }
         }
 

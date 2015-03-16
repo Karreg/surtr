@@ -8,6 +8,8 @@
     using Microsoft.Practices.Prism.Regions;
     using Microsoft.Practices.Unity;
 
+    using Surtr.MainModule.Services;
+
     /// <summary>
     /// The main module entry point
     /// </summary>
@@ -64,6 +66,7 @@
             this.unityContainer.RegisterInstance(logger);
 
             logger.InfoFormat("Starting surtr...");
+            this.unityContainer.RegisterType<ISettingsService, SettingsService>(this.ContainerControlledLifetimeManager);
             this.unityContainer.RegisterType<IStoreService, StoreService>(this.ContainerControlledLifetimeManager);
             this.unityContainer.RegisterType<IScanService, ScanService>(this.ContainerControlledLifetimeManager);
             this.unityContainer.RegisterType<ISynchronizeService, SynchronizeService>(this.ContainerControlledLifetimeManager);
