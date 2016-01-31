@@ -15,8 +15,7 @@
 
     using Michonne.Interfaces;
 
-    using Microsoft.Practices.Prism;
-    using Microsoft.Practices.Prism.Commands;
+    using Prism.Commands;
 
     using Surtr.LibraryManagement.Annotations;
     using Surtr.LibraryManagement.Implementation;

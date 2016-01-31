@@ -2,8 +2,9 @@
 {
     using System;
     using System.Windows;
-    using Microsoft.Practices.Prism.Modularity;
-    using Microsoft.Practices.Prism.UnityExtensions;
+
+    using Prism.Modularity;
+    using Prism.Unity;
 
     /// <summary>
     /// BOOTSTRAPPER for the application

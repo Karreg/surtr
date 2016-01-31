@@ -4,9 +4,10 @@
     using LibraryManagement.Implementation;
     using LibraryManagement.Interface;
     using Michonne.Implementation;
-    using Microsoft.Practices.Prism.Modularity;
-    using Microsoft.Practices.Prism.Regions;
     using Microsoft.Practices.Unity;
+
+    using Prism.Modularity;
+    using Prism.Regions;
 
     using Surtr.MainModule.Services;
 

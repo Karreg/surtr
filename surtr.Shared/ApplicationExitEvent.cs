@@ -1,6 +1,6 @@
 ﻿namespace Surtr.Shared
 {
-    using Microsoft.Practices.Prism.PubSubEvents;
+    using Prism.Events;
 
     /// <summary>
     /// Application exit event
