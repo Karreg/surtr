@@ -8,7 +8,17 @@
              xmlns:helpers="clr-namespace:Surtr.MainModule.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <StackPanel>
-        <Expander Header="Help" IsExpanded="False">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>-->
+        <Expander Grid.Row="0" Header="Help" IsExpanded="False">
             <GroupBox Header="Keyboard shortcuts">
             <Grid>
                 <Grid.RowDefinitions>
@@ -40,7 +50,7 @@
             </Grid>
             </GroupBox>
         </Expander>
-        <Expander Header="Configuration"  IsExpanded="True">
+        <Expander Grid.Row="1" Header="Configuration"  IsExpanded="True">
             <StackPanel>
                 <GroupBox Header="Configuration">
                     <Grid>
@@ -65,7 +75,7 @@
                 <Button Command="{Binding LoadCommand}">Load</Button>
             </StackPanel>
         </Expander>
-        <Expander Header="Library" IsExpanded="True">
+        <Expander Grid.Row="2" Header="Library" IsExpanded="True">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -81,7 +91,30 @@
                     <TextBlock Grid.Row="1" Grid.Column="0">Title filter</TextBlock>
                     <TextBox Text="{Binding TitleFilter}" MinWidth="50" Grid.Row="1" Grid.Column="1"></TextBox>
                 </Grid>
-                <DataGrid x:Name="LibraryGrid" ItemsSource="{Binding LibraryItems}" helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" SelectedItem="{Binding SelectedLibraryItem}" SelectionMode="Extended" VerticalScrollBarVisibility="Auto" MouseEnter="LibraryGridMouseEnter" MaxHeight="500">
+                <Expander IsExpanded="False" Header="Temporary Grid">
+                    <ItemsControl ItemsSource="{Binding LibraryItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0"></Image>
+                                    <TextBlock Grid.Row="1" Text="{Binding Filename}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Expander>
+                <DataGrid x:Name="LibraryGrid" 
+                          ItemsSource="{Binding LibraryItems}" 
+                          helpers:DataGridHelper.SelectedItems="{Binding SelectedLibraryItems}" 
+                          SelectedItem="{Binding SelectedLibraryItem}" 
+                          SelectionMode="Extended" 
+                          VerticalScrollBarVisibility="Auto" 
+                          MouseEnter="LibraryGridMouseEnter" 
+                          MaxHeight="500">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding OpenCommand}"></KeyBinding>
                         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
@@ -99,21 +132,21 @@
                 </DataGrid>
             </StackPanel>
         </Expander>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
             <TextBlock Text="Current Size: "></TextBlock>
             <TextBlock Text="{Binding DisplayCurrentSize}"></TextBlock>
             <TextBlock Text=" / "/>
             <TextBlock Text="{Binding MaxSize}"></TextBlock>
             
         </StackPanel>
-        <Button Command="{Binding SynchronizeCommand}">Synchronize</Button>
-        <Expander Header="Synchronization" IsExpanded="True">
+        <Button Grid.Row="4" Command="{Binding SynchronizeCommand}">Synchronize</Button>
+        <Expander Grid.Row="5" Header="Synchronization" IsExpanded="True">
             <StackPanel>
                 <CheckBox IsChecked="{Binding ShowNullAction}">Display already synced items</CheckBox>
                 <DataGrid x:Name="SynchronizationGrid" ItemsSource="{Binding SyncItems}" VerticalScrollBarVisibility="Auto" MaxHeight="500" MouseEnter="SynchronizationGridMouseEnter"></DataGrid>
             </StackPanel>
         </Expander>
-        <Button Command="{Binding ExecuteCommand}">Execute</Button>
-        <TextBlock Text="{Binding Status}"></TextBlock>
+        <Button Grid.Row="6" Command="{Binding ExecuteCommand}">Execute</Button>
+        <TextBlock Grid.Row="7" Text="{Binding Status}"></TextBlock>
     </StackPanel>
 </UserControl>
