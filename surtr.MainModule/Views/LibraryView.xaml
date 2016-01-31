@@ -105,8 +105,13 @@
                                         <RowDefinition Height="250"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Grid.Row="0" Source="{Binding Cover}"></Image>
-                                    <TextBlock Grid.Row="1" Text="{Binding Filename}"/>
+                                    <!--<Image Grid.Row="0" Source="{Binding Cover}" Width="Auto" Height="Auto"></Image>-->
+                                    <Image Grid.Row="0" Stretch="Fill">
+                                        <Image.Source>
+                                            <BitmapImage UriSource="DefaultCover.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock Grid.Row="1" Text="{Binding Filename}" TextWrapping="Wrap"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

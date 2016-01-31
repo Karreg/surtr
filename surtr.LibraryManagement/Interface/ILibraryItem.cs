@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Drawing;
+    using System.Windows.Media;
 
     /// <summary>
     /// Interface for library items
@@ -68,7 +69,7 @@
         /// <summary>
         /// Cover for the item
         /// </summary>
-        Image Cover { get; }
+        ImageSource Cover { get; }
 
         /// <summary>
         /// Gets the Size in GB

@@ -4,9 +4,13 @@ namespace Surtr.LibraryManagement.Implementation
     using System.ComponentModel;
     using System.Drawing;
     using System.IO;
+    using System.Resources;
     using System.Runtime.CompilerServices;
     using Annotations;
     using Interface;
+
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// The library item.
@@ -14,9 +18,9 @@ namespace Surtr.LibraryManagement.Implementation
     public class LibraryItem : ILibraryItem
     {
         /// <summary>
-        /// Static cover for testing purpose
+        /// Static image source for display
         /// </summary>
-        private static readonly Image StaticCover = new Bitmap("DefaultCover.png");
+        private static ImageSource StaticCoverSource;
 
         /// <summary>
         /// The favorite.
@@ -138,11 +142,17 @@ namespace Surtr.LibraryManagement.Implementation
         /// <summary>
         /// Cover for the item
         /// </summary>
-        public Image Cover
+        public ImageSource Cover
         {
             get
             {
-                return StaticCover;
+                if (StaticCoverSource == null)
+                {
+                    var uri = new System.Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "DefaultCover.png"));
+                    StaticCoverSource = new BitmapImage(new Uri(uri.AbsoluteUri));
+                }
+
+                return StaticCoverSource;
             }
         }
 
