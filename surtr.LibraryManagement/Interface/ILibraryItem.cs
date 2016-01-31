@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel;
+    using System.Drawing;
 
     /// <summary>
     /// Interface for library items
@@ -63,6 +64,11 @@
         ///   <c>true</c> if exists; otherwise, <c>false</c>.
         /// </value>
         bool Exists { get; }
+
+        /// <summary>
+        /// Cover for the item
+        /// </summary>
+        Image Cover { get; }
 
         /// <summary>
         /// Gets the Size in GB

@@ -2,6 +2,7 @@ namespace Surtr.LibraryManagement.Implementation
 {
     using System;
     using System.ComponentModel;
+    using System.Drawing;
     using System.IO;
     using System.Runtime.CompilerServices;
     using Annotations;
@@ -12,6 +13,11 @@ namespace Surtr.LibraryManagement.Implementation
     /// </summary>
     public class LibraryItem : ILibraryItem
     {
+        /// <summary>
+        /// Static cover for testing purpose
+        /// </summary>
+        private static readonly Image StaticCover = new Bitmap("DefaultCover.png");
+
         /// <summary>
         /// The favorite.
         /// </summary>
@@ -128,6 +134,17 @@ namespace Surtr.LibraryManagement.Implementation
         /// Gets the size.
         /// </summary>
         public double Size { get; private set; }
+
+        /// <summary>
+        /// Cover for the item
+        /// </summary>
+        public Image Cover
+        {
+            get
+            {
+                return StaticCover;
+            }
+        }
 
         /// <summary>
         /// The on property changed.

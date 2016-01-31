@@ -93,14 +93,19 @@
                 </Grid>
                 <Expander IsExpanded="False" Header="Temporary Grid">
                     <ItemsControl ItemsSource="{Binding LibraryItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Width="200">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="250"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Grid.Row="0"></Image>
+                                    <Image Grid.Row="0" Source="{Binding Cover}"></Image>
                                     <TextBlock Grid.Row="1" Text="{Binding Filename}"/>
                                 </Grid>
                             </DataTemplate>
