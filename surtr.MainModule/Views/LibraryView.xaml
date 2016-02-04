@@ -7,7 +7,13 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:helpers="clr-namespace:Surtr.MainModule.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+    
     <StackPanel>
+        <StackPanel.Resources>
+            <ResourceDictionary>
+                <ImageBrush x:Key="DefaultCoverBrush" ImageSource="pack://siteoforigin:,,,/Resources/DefaultCover.png" />
+            </ResourceDictionary>
+        </StackPanel.Resources>
         <!--<Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -95,24 +101,24 @@
                     <ItemsControl ItemsSource="{Binding LibraryItems}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid />
+                                <WrapPanel IsItemsHost="True" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Width="200">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="250"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <!--<Image Grid.Row="0" Source="{Binding Cover}" Width="Auto" Height="Auto"></Image>-->
-                                    <Image Grid.Row="0" Stretch="Fill">
-                                        <Image.Source>
-                                            <BitmapImage UriSource="DefaultCover.png"/>
-                                        </Image.Source>
-                                    </Image>
-                                    <TextBlock Grid.Row="1" Text="{Binding Filename}" TextWrapping="Wrap"/>
-                                </Grid>
+                                <StackPanel Width="200" Orientation="Vertical" Margin="2">
+                                    <Rectangle Grid.Row="0" Height="250">
+                                        <Rectangle.Style>
+                                            <Style TargetType="{x:Type Rectangle}">
+                                                <Setter Property="Fill" Value="{StaticResource DefaultCoverBrush}" />
+                                            </Style>
+                                        </Rectangle.Style>
+                                    </Rectangle>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Margin="0,0,2,0"/>
+                                        <TextBlock Text="{Binding Filename}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
