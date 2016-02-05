@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Drawing;
+    using System.Windows;
     using System.Windows.Media;
 
     /// <summary>
@@ -67,9 +68,19 @@
         bool Exists { get; }
 
         /// <summary>
+        /// True if there's a cover
+        /// </summary>
+        bool HasCover { get; }
+
+        /// <summary>
         /// Cover for the item
         /// </summary>
         ImageSource Cover { get; }
+
+        /// <summary>
+        /// Visibility for the cover
+        /// </summary>
+        Visibility CoverVisibility { get; }
 
         /// <summary>
         /// Gets the Size in GB

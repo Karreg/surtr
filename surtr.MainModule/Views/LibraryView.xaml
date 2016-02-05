@@ -107,13 +107,19 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Width="200" Orientation="Vertical" Margin="2">
-                                    <Rectangle Grid.Row="0" Height="250">
-                                        <Rectangle.Style>
-                                            <Style TargetType="{x:Type Rectangle}">
-                                                <Setter Property="Fill" Value="{StaticResource DefaultCoverBrush}" />
+                                    <Border Grid.Row="0" Height="250">
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding HasCover}" Value="false">
+                                                        <Setter Property="Background" Value="{StaticResource DefaultCoverBrush}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
                                             </Style>
-                                        </Rectangle.Style>
-                                    </Rectangle>
+                                        </Border.Style>
+                                        <Image Width="200" Height="250" Visibility="{Binding CoverVisibility}" Source="{Binding Cover}"></Image>
+                                    </Border>
+                                    
                                     <StackPanel Orientation="Horizontal">
                                         <CheckBox Margin="0,0,2,0"/>
                                         <TextBlock Text="{Binding Filename}" TextWrapping="Wrap"/>

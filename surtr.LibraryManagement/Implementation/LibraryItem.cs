@@ -6,6 +6,8 @@ namespace Surtr.LibraryManagement.Implementation
     using System.IO;
     using System.Resources;
     using System.Runtime.CompilerServices;
+    using System.Windows;
+
     using Annotations;
     using Interface;
 
@@ -18,14 +20,13 @@ namespace Surtr.LibraryManagement.Implementation
     public class LibraryItem : ILibraryItem
     {
         /// <summary>
-        /// Static image source for display
-        /// </summary>
-        private static ImageSource StaticCoverSource;
-
-        /// <summary>
         /// The favorite.
         /// </summary>
         private bool favorite;
+
+        private ImageSource image;
+
+        private bool hasCover = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LibraryItem"/> class.
@@ -53,6 +54,8 @@ namespace Surtr.LibraryManagement.Implementation
                 this.Size = ((double)fileInfo.Length) / (1024 * 1024);
                 fileInfo.Attributes &= ~FileAttributes.ReadOnly;
             }
+
+            this.HasCover = File.Exists(this.FullPathFilename + ".jpg");
         }
 
         /// <summary>
@@ -139,6 +142,20 @@ namespace Surtr.LibraryManagement.Implementation
         /// </summary>
         public double Size { get; private set; }
 
+        public bool HasCover
+        {
+            get
+            {
+                return this.hasCover;
+            }
+
+            set
+            {
+                this.hasCover = value;
+                this.OnPropertyChanged("HasCover");
+            }
+        }
+
         /// <summary>
         /// Cover for the item
         /// </summary>
@@ -146,13 +163,25 @@ namespace Surtr.LibraryManagement.Implementation
         {
             get
             {
-                if (StaticCoverSource == null)
+                if (this.HasCover && this.image == null)
                 {
-                    var uri = new System.Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "DefaultCover.png"));
-                    StaticCoverSource = new BitmapImage(new Uri(uri.AbsoluteUri));
+                    this.image = new BitmapImage(new Uri(this.FullPathFilename + ".jpg"));
                 }
 
-                return StaticCoverSource;
+                return this.image;
+            }
+        }
+
+        public Visibility CoverVisibility
+        {
+            get
+            {
+                if (this.HasCover)
+                {
+                    return Visibility.Visible;
+                }
+
+                return Visibility.Collapsed;
             }
         }
 
