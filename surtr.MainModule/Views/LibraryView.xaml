@@ -6,7 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:helpers="clr-namespace:Surtr.MainModule.Views"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interactivity="http://prismlibrary.com/">
     
     <StackPanel>
         <StackPanel.Resources>
@@ -97,16 +98,26 @@
                     <TextBlock Grid.Row="1" Grid.Column="0">Title filter</TextBlock>
                     <TextBox Text="{Binding TitleFilter}" MinWidth="50" Grid.Row="1" Grid.Column="1"></TextBox>
                 </Grid>
-                <Expander IsExpanded="False" Header="Temporary Grid">
-                    <ItemsControl ItemsSource="{Binding LibraryItems}">
-                        <ItemsControl.ItemsPanel>
+                <Expander IsExpanded="True" Header="Temporary Grid">
+                    <ItemsControl 
+                        ItemsSource="{Binding LibraryItems}" 
+                        VirtualizingStackPanel.IsVirtualizing="True"
+                        ScrollViewer.CanContentScroll="True">
+                        <ItemsControl.ItemsPanel >
                             <ItemsPanelTemplate>
                                 <WrapPanel IsItemsHost="True" />
+                                <!--<VirtualizingStackPanel IsItemsHost="True"/>-->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="200" Orientation="Vertical" Margin="2">
+                                <StackPanel x:Name="BookControl"
+                                            Width="200"
+                                            Orientation="Vertical"
+                                            Margin="2">
+                                    <i:Interaction>
+                                        
+                                    </i:Interaction>
                                     <Border Grid.Row="0" Height="250">
                                         <Border.Style>
                                             <Style TargetType="{x:Type Border}">
